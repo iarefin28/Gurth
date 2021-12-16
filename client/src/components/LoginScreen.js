@@ -16,8 +16,11 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import Trance from './Trance.jpg'
+
 export default function LoginScreen() {
     const { auth } = useContext(AuthContext);
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -29,6 +32,11 @@ export default function LoginScreen() {
 
     };
 
+    const handleCreateAccount = (event) => {
+        event.preventDefault();
+        window.location.href="http://localhost:3000/register"
+    }
+
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
@@ -38,7 +46,7 @@ export default function LoginScreen() {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: 'url(https://source.unsplash.com/random)',
+                    backgroundImage: 'url(' + Trance + ')',
                     backgroundRepeat: 'no-repeat',
                     backgroundColor: (t) =>
                         t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -46,21 +54,19 @@ export default function LoginScreen() {
                     backgroundPosition: 'center',
                 }}
             />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{backgroundImage: "linear-gradient(#c555a1, #452465)"}}>
                 <Box
                     sx={{
-                        my: 8,
-                        mx: 4,
+                        my: 12,
+                        mx: 6,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        bgcolor: "linear-gradient(purple, pink)"
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Gurth
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
@@ -83,31 +89,23 @@ export default function LoginScreen() {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ mt: 3, mb: 0, backgroundImage: "linear-gradient(#d07a82, #dcae6d)"}}
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                        <Copyright sx={{ mt: 5 }} />
+
+                        <Button
+                            onClick={handleCreateAccount}
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 2, mb: 2, backgroundImage: "linear-gradient(#d07a82, #dcae6d)"}}
+                        >
+                            Create New Account
+                        </Button>
                     </Box>
                 </Box>
             </Grid>
