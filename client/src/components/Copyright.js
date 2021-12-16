@@ -5,9 +5,10 @@ export default function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="/">
-                The Top 5 Lister
-            </Link>{' '}
+            {/*<Link color="inherit" href="/">
+                Ishan Arefin
+    </Link>{' '} */}
+            Ishan Arefin. {' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>

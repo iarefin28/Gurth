@@ -29,6 +29,7 @@ export default function RegisterScreen() {
     };
 
     return (
+        <div id="register-screen">
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -105,7 +106,7 @@ export default function RegisterScreen() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{ mt: 3, mb: 2, backgroundImage: "linear-gradient(#d07a82, #dcae6d)"}}
                         >
                             Sign Up
                         </Button>
@@ -120,5 +121,6 @@ export default function RegisterScreen() {
                 </Box>
                 <Copyright sx={{ mt: 5 }} />
             </Container>
+        </div>
     );
 }

@@ -107,6 +107,7 @@ export default function LoginScreen() {
                             Create New Account
                         </Button>
                     </Box>
+                    <Copyright sx={{ mt: 5 }} />
                 </Box>
             </Grid>
         </Grid>
