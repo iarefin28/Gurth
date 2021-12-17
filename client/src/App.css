@@ -87,6 +87,16 @@ body {
   background-color: var(--swatch-primary);
 }
 
+#clock {
+  text-align: center;
+  font-family: "Lucida Console";
+  font-size: x-large;
+  color: purple;
+}
+
+#clock-contents {
+}
+
 #top5-workspace {
   position: absolute;
   left: 0%;

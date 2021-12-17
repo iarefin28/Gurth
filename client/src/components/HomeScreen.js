@@ -1,62 +1,75 @@
-import React, { useContext, useEffect } from 'react'
-import { GlobalStoreContext } from '../store'
-import ListCard from './ListCard.js'
-import MUIDeleteModal from './MUIDeleteModal'
-
-import AddIcon from '@mui/icons-material/Add';
-import Fab from '@mui/material/Fab'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography'
-/*
-    This React component lists all the top5 lists in the UI.
-    
-    @author McKilla Gorilla
-*/
-const HomeScreen = () => {
-    const { store } = useContext(GlobalStoreContext);
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import DateTime from './DateTime.js'
 
-    useEffect(() => {
-        store.loadIdNamePairs();
-    }, []);
+const drawerWidth = 350;
 
-    function handleCreateNewList() {
-        store.createNewList();
-    }
-    let listCard = "";
-    if (store) {
-        listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
-            {
-                store.idNamePairs.map((pair) => (
-                    <ListCard
-                        key={pair._id}
-                        idNamePair={pair}
-                        selected={false}
-                    />
-                ))
-            }
-            </List>;
-    }
-    return (
-        <div id="top5-list-selector">
-            <div id="list-selector-heading">
-            <Fab 
-                color="primary" 
-                aria-label="add"
-                id="add-list-button"
-                onClick={handleCreateNewList}
-            >
-                <AddIcon />
-            </Fab>
-                <Typography variant="h2">Your Lists</Typography>
-            </div>
-            <div id="list-selector-list">
-                {
-                    listCard
-                }
-                <MUIDeleteModal />
-            </div>
-        </div>)
+export default function HomeScreen() {
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Hello, Player
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            backgroundImage: "linear-gradient(#d07a82, #dcae6d)",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <DateTime/>
+        <Divider/>
+        
+        <Toolbar />
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </Box>
+  );
 }
-
-export default HomeScreen;

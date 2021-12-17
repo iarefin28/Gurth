@@ -8,6 +8,7 @@ import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
 import Top5Item from './Top5Item'
 import WorkspaceScreen from './WorkspaceScreen'
+import DateTime from './DateTime'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -23,5 +24,6 @@ export {
     ListCard, 
     LoginScreen,
     RegisterScreen,
+    DateTime,
     Top5Item, 
     WorkspaceScreen }
