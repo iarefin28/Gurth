@@ -97,6 +97,14 @@ body {
 #clock-contents {
 }
 
+#player-info {
+  font-family: "Lucida Console";
+  font-size: medium;
+  color: purple;
+  padding-top: 5%;
+  padding-left: 5%;
+}
+
 #top5-workspace {
   position: absolute;
   left: 0%;
