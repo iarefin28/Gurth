@@ -8,6 +8,7 @@ import { React, useState, useEffect } from 'react'
 var DateTime = () =>
 {
     const [showDate, setShowDate] = useState(new Date());
+
     useEffect(() => {
         setInterval(() => setShowDate(new Date()), 1000);
     }, []);
@@ -16,7 +17,26 @@ var DateTime = () =>
     //var showDate = new Date();
     //var displayTodaysDate = (showDate.getMonth()+1)+'/'+showDate.getDate()+'/'+showDate.getFullYear();
     var displayTodaysDate = showDate.toDateString();
-    var displayTime = showDate.getHours()+':'+showDate.getMinutes()+':'+showDate.getSeconds();
+    var displayTime;
+    if(showDate.getHours() > 12){
+        displayTime = (showDate.getHours()-12)+':'+showDate.getMinutes() + "PM " + showDate.getSeconds();
+        if(showDate.getMinutes() < 10){
+            displayTime = (showDate.getHours()-12)+':0'+showDate.getMinutes() + "PM " + showDate.getSeconds();
+        }
+    }
+    else if(showDate.getHours == 0){
+        displayTime = (12)+':'+showDate.getMinutes() + "AM " + showDate.getSeconds();
+        if(showDate.getMinutes() < 10){
+            displayTime = (showDate.getHours()-12)+':0'+showDate.getMinutes() + "PM " + showDate.getSeconds();
+        }
+    }
+    else{
+        displayTime = showDate.getHours()+':'+showDate.getMinutes() + "AM " + showDate.getSeconds();
+        if(showDate.getMinutes() < 10){
+            displayTime = (showDate.getHours()-12)+':0'+showDate.getMinutes() + "PM " + showDate.getSeconds();
+        }
+    }
+
     return(
         <div id="clock">
             <div id="clock-contents">

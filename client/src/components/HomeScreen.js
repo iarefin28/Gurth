@@ -29,6 +29,8 @@ export default function HomeScreen() {
             Hello, Player
           </Typography>
         </Toolbar>
+        
+        Hello
       </AppBar>
       <Drawer
         sx={{
@@ -45,7 +47,7 @@ export default function HomeScreen() {
       >
         <DateTime/>
         <Divider/>
-        
+
         <Toolbar />
         <Divider />
         <List>
