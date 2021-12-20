@@ -21,8 +21,8 @@ app.use(cookieParser())
 // SETUP OUR OWN ROUTERS AS MIDDLEWARE
 const authRouter = require('./routes/auth-router')
 app.use('/auth', authRouter)
-const top5listsRouter = require('./routes/top5lists-router')
-app.use('/api', top5listsRouter)
+const questRouter = require('./routes/quest-router')
+app.use('/api', questRouter)
 
 // INITIALIZE OUR DATABASE OBJECT
 const db = require('./db')

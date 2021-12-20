@@ -103,6 +103,19 @@ body {
   color: purple;
   padding-top: 5%;
   padding-left: 5%;
+  padding-bottom: 5%;
+}
+
+#player-skills {
+  text-align: right;
+  display: block;
+  flex-wrap: wrap;
+  font-family: "Lucida Console";
+  font-size: small;
+  color: purple;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 40%;
 }
 
 #top5-workspace {

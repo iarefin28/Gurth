@@ -8,7 +8,7 @@ const UserSchema = new Schema(
         lastName: { type: String, required: true },
         email: { type: String, required: true },
         passwordHash: { type: String, required: true },
-        top5Lists: [{type: ObjectId, ref: 'Top5List'}]
+        quests: [{type: ObjectId, ref: 'Quest'}]
     },
     { timestamps: true },
 )

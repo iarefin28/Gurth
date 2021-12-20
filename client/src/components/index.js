@@ -10,6 +10,10 @@ import Top5Item from './Top5Item'
 import WorkspaceScreen from './WorkspaceScreen'
 import DateTime from './DateTime'
 import PlayerStatus from './PlayerStatus'
+import PlayerSkills from './PlayerSkills'
+import Dashboard from './Dashboard'
+import QuestScreen from './QuestScreen'
+import AddQuestModal from './AddQuestModal'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -25,7 +29,11 @@ export {
     ListCard, 
     LoginScreen,
     RegisterScreen,
+    PlayerSkills,
     DateTime,
     PlayerStatus,
-    Top5Item, 
+    Top5Item,
+    Dashboard, 
+    QuestScreen,
+    AddQuestModal,
     WorkspaceScreen }
