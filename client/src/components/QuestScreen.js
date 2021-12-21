@@ -14,6 +14,7 @@ import Quest from './Quest.js';
 import { List } from '@mui/material';
 import { Drawer } from '@mui/material';
 import { Paper } from '@mui/material';
+import DeleteQuestModal from './DeleteQuestModal.js';
 
 const drawerWidth = 450;
 
@@ -47,6 +48,7 @@ export default function QuestScreen() {
 						nameOfQuest={pair.name}
 						endDate={pair.endDate}
 						increase_stat={pair.stats}
+						questId={pair._id}
 					/>
 				))
 			}
@@ -71,6 +73,7 @@ export default function QuestScreen() {
 					<Box sx={{display: "flex", flexDirection: "column"}}>
 						<Typography sx={{pl: 3}} variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Your Quests</Typography>
 						{quests}
+						<DeleteQuestModal/>
 					</Box>
 					<Box>
 						<Typography variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Today's Agenda</Typography>

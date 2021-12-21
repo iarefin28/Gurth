@@ -18,7 +18,9 @@ console.log("create GlobalStoreContext");
 export const GlobalStoreActionType = {
     ADD_NEW_QUEST: "ADD_NEW_QUEST",
     CANCEL_NEW_QUEST: "CANCEL_NEW_QUEST",
-    LOAD_ALL_USER_QUESTS: "LOAD_ALL_USER_QUESTS"
+    LOAD_ALL_USER_QUESTS: "LOAD_ALL_USER_QUESTS",
+    SHOW_DELETE_QUEST_MODAL: "SHOW_DELETE_QUEST_MODAL",
+    UNSHOW_DELETE_QUEST_MODAL: "UNSHOW_DELETE_QUEST_MODAL"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -27,7 +29,9 @@ function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
         ADD_QUEST_ACTIVE: false,
-        QUESTS: []
+        QUESTS: [],
+        deleteQuestModalVisible: false,
+        selectedQuest: [] //array of size 2, first element is the id, second element is the id 
     });
     const history = useHistory();
 
@@ -46,19 +50,41 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.ADD_NEW_QUEST: {
                 return setStore({
                     ADD_QUEST_ACTIVE: true,
-                    QUESTS: store.QUESTS
+                    QUESTS: store.QUESTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest
                 });
             }
             case GlobalStoreActionType.CANCEL_NEW_QUEST: {
                 return setStore({
                     ADD_QUEST_ACTIVE: false,
-                    QUESTS: store.QUESTS
+                    QUESTS: store.QUESTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_QUESTS: {
                 return setStore({
                     ADD_QUEST_ACTIVE: false,
-                    QUESTS: payload
+                    QUESTS: payload,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest
+                });
+            }
+            case GlobalStoreActionType.SHOW_DELETE_QUEST_MODAL: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
+                    QUESTS: store.QUESTS,
+                    deleteQuestModalVisible: true,
+                    selectedQuest: payload
+                });
+            }
+            case GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
+                    QUESTS: store.QUESTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: payload
                 });
             }
             default:
@@ -96,6 +122,23 @@ function GlobalStoreContextProvider(props) {
         else{
             console.log("API FAILED TO GET THE QUESTS");
         }
+    }
+
+    store.showDeleteQuestModal = async function(questId, questName){
+        let selected = []
+        selected.push(questId);
+        selected.push(questName);
+        storeReducer({
+            type: GlobalStoreActionType.SHOW_DELETE_QUEST_MODAL,
+            payload: selected
+        });
+    }
+
+    store.unshowDeleteQuestModal = async function(){
+        storeReducer({
+            type: GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL,
+            payload: []
+        });
     }
 
     return (

@@ -99,18 +99,19 @@ export default function AddQuestModal() {
                     />
                     <Box sx={{ display: "flex", flexDirection: "row"}}>
                         <Box>
-                            <Typography sx={{pt: 3}}>Quest End Date:</Typography>
+                            <Typography variant="h5" sx={{pt: 3, fontFamily: "Lucida Console", color: "purple"}}>Quest End Date:</Typography>
                             <Calendar onChange={onChange} value = {value}/>
                         </Box>
                         <Box sx={{pl: 2, pt: 3}}>
-                            <Typography> Stats to Increase:</Typography>
-                            <FormControlLabel control={<Checkbox onChange={() => selectFit(!fit)}/>} label="Fitness"/>
-                            <FormControlLabel control={<Checkbox onChange={() => selectIntro(!intro)} />} label="Introspection" />
-                            <FormControlLabel control={<Checkbox onChange={() => selectCok(!cok)}/>} label="Cooking" />
-                            <FormControlLabel control={<Checkbox onChange={() => selectCon(!con)}/>} label="Confidence"/>
-                            <FormControlLabel control={<Checkbox onChange={() => selectSel(!sel)}/>} label="Self-Discipline"/>
-                            <FormControlLabel control={<Checkbox onChange={() => selectPro(!pro)}/>} label="Programming"/>
+                            <Typography variant="h5" sx={{fontFamily: "Lucida Console", color: "purple"}}> Stats to Increase:</Typography>
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectFit(!fit)}/>} label="Fitness"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectIntro(!intro)} />} label="Introspection" />
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectCok(!cok)}/>} label="Cooking" />
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectCon(!con)}/>} label="Confidence"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectSel(!sel)}/>} label="Self-Discipline"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectPro(!pro)}/>} label="Programming"/>
                             
+                           
                             <Button fullWidth style={{backgroundImage: "linear-gradient(#c555a1, #452465)", color: "orange"}} sx={{mb: 1, mt: 15}} onClick={handleCloseModal}>CANCEL</Button>
                             <Button fullWidth style={{backgroundImage: "linear-gradient(#c555a1, #452465)", color: "orange"}} onClick={handleAddNewQuest}>CONFIRM</Button>
                         </Box>
