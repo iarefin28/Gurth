@@ -91,7 +91,7 @@ function AuthContextProvider(props) {
                     user: response.data.user
                 }
             })
-            history.push("/");
+            history.push("/homescreen");
         }
     }
 
@@ -102,7 +102,7 @@ function AuthContextProvider(props) {
                 type: AuthActionType.LOGOUT_USER,
                 payload: null
             })
-            history.push("/");
+            history.push("/login");
         }
     }
 

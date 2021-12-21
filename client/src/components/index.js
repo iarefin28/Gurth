@@ -14,6 +14,7 @@ import PlayerSkills from './PlayerSkills'
 import Dashboard from './Dashboard'
 import QuestScreen from './QuestScreen'
 import AddQuestModal from './AddQuestModal'
+import Quest from './Quest'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -36,4 +37,5 @@ export {
     Dashboard, 
     QuestScreen,
     AddQuestModal,
+    Quest,
     WorkspaceScreen }

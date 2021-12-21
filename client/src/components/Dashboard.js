@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,6 +10,8 @@ import Divider from '@mui/material/Divider';
 import DateTime from './DateTime.js'
 import PlayerStatus from './PlayerStatus.js';
 import PlayerSkills from './PlayerSkills.js';
+import AuthContext from '../auth/index.js';
+import { GlobalStoreContext } from '../store'
 
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
@@ -23,14 +26,17 @@ import WorkIcon from '@mui/icons-material/Work';
 import CheckIcon from '@mui/icons-material/Check';
 import LockIcon from '@mui/icons-material/Lock';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { useHistory } from 'react-router-dom';
 
 const drawerWidth = 450;
 
 export default function Dashboard() {
-  const history = useHistory();
+	const history = useHistory();
+	const {auth} = useContext(AuthContext);
+  const {store} = useContext(GlobalStoreContext);
+
 
     function handleLoadQuests(event) {
         history.push("/quests");
@@ -38,7 +44,12 @@ export default function Dashboard() {
 
     function handleLoadHome(event) {
       history.push("/");
-  }
+  	}
+
+	function handleLogout(event){
+		console.log("Logout")
+		auth.logoutUser();
+	}
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -56,7 +67,16 @@ export default function Dashboard() {
         variant="permanent"
         anchor="left"
       >
-        <DateTime/>
+        <Box justifyContent="center" sx={{ display: "flex", flexDirection: "row"}}>
+			<Box>
+				<IconButton color="secondary" onClick={handleLogout}>
+            		<LogoutIcon></LogoutIcon>
+        		</IconButton>
+			</Box>
+			<Box>
+				<DateTime/>
+			</Box>
+        </Box>
         <Divider/>
         <PlayerStatus/>
         <Divider/>

@@ -18,6 +18,7 @@ console.log("create GlobalStoreContext");
 export const GlobalStoreActionType = {
     ADD_NEW_QUEST: "ADD_NEW_QUEST",
     CANCEL_NEW_QUEST: "CANCEL_NEW_QUEST",
+    LOAD_ALL_USER_QUESTS: "LOAD_ALL_USER_QUESTS"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -25,7 +26,8 @@ export const GlobalStoreActionType = {
 function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
-        ADD_QUEST_ACTIVE: false
+        ADD_QUEST_ACTIVE: false,
+        QUESTS: []
     });
     const history = useHistory();
 
@@ -44,13 +46,19 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.ADD_NEW_QUEST: {
                 return setStore({
                     ADD_QUEST_ACTIVE: true,
-                    payload: null
+                    QUESTS: store.QUESTS
                 });
             }
             case GlobalStoreActionType.CANCEL_NEW_QUEST: {
                 return setStore({
                     ADD_QUEST_ACTIVE: false,
-                    payload: null
+                    QUESTS: store.QUESTS
+                });
+            }
+            case GlobalStoreActionType.LOAD_ALL_USER_QUESTS: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: payload
                 });
             }
             default:
@@ -71,8 +79,23 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
-    store.createNewQuest = async function (questName, daysTillCompletion, statToUpdate){
-        let response = await api.createNewQuest(questName, daysTillCompletion, statToUpdate);
+    store.createNewQuest = async function (questName, endDate, statToUpdate){
+        let response = await api.createNewQuest(questName, endDate, statToUpdate, auth.user.email);
+    }
+
+
+    store.retrieveAllUserQuests = async function(){
+        let response = await api.retrieveAllUserQuests();
+        if(response.status === 200){
+            let questsArray = response.data.userQuests;
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_QUESTS,
+                payload: questsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE QUESTS");
+        }
     }
 
     return (

@@ -1,29 +1,12 @@
-:root {
-  /* 
-        FIRST WE'LL DEFINE OUR SWATCHES, i.e. THE COMPLEMENTARY
-        COLORS THAT WE'LL USE TOGETHER IN MULTIPLE PLACES THAT
-        TOGETHER WILL MAKE UP A GIVEN THEME
-    
-        @author McKilla Gorilla
-    */
-  --swatch-foundation: #eeeedd;
-  --swatch-primary: #e6e6e6;
-  --swatch-complement: #e1e4cb;
-  --swatch-contrast: #111111;
-  --swatch-accent: #669966;
-  --swatch-status: #123456;
-  --my-font-family: "Robaaaoto";
-  --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
-}
-
 body {
   background-color: var(--swatch-foundation);
   margin: 0;
 }
 
 #root {
-  background-image: linear-gradient(to bottom, #c555a1, #452465);
-  font-family: "Lexend Exa";
+  /*background-image: linear-gradient(to bottom, #c555a1, #452465); */
+  background-color: black;
+  font-family: "Lucida Console";
   position: absolute;
   width: 100%;
   height: 100%;

@@ -22,15 +22,19 @@ const api = axios.create({
 // WORK, AND SOME REQUIRE DATA, WHICH WE WE WILL FORMAT HERE, FOR WHEN
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
-export const createNewQuest = (questName, daysTillCompletion, statsToUpdate) => {
+export const createNewQuest = (questName, endDate, statsToUpdate, email) => {
     return api.post(`/quests/`, {
         // SPECIFY THE PAYLOAD
         nameOfQuest: questName,
-        time_lim: daysTillCompletion,
+        endDate: endDate,
         increase_stat: statsToUpdate,
+        ownerEmail: email
     })
 }
 
+export const retrieveAllUserQuests = () => {
+    return api.get(`/allquests/`);
+}
 
 export const createTop5List = (newListName, newItems, userEmail) => {
     return api.post(`/top5list/`, {
@@ -52,6 +56,7 @@ export const updateTop5ListById = (id, top5List) => {
 
 const apis = {
     createNewQuest,
+    retrieveAllUserQuests,
     createTop5List,
     deleteTop5ListById,
     getTop5ListById,

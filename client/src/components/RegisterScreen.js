@@ -38,6 +38,8 @@ export default function RegisterScreen() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        backgroundImage: "linear-gradient(#c555a1, #452465)",
+                        borderRadius: 2,
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
