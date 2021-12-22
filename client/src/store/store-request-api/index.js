@@ -36,6 +36,8 @@ export const retrieveAllUserQuests = () => {
     return api.get(`/allquests/`);
 }
 
+export const deleteQuestById = (id) => api.delete(`/quests/${id}`)
+
 export const createTop5List = (newListName, newItems, userEmail) => {
     return api.post(`/top5list/`, {
         // SPECIFY THE PAYLOAD
@@ -57,6 +59,7 @@ export const updateTop5ListById = (id, top5List) => {
 const apis = {
     createNewQuest,
     retrieveAllUserQuests,
+    deleteQuestById,
     createTop5List,
     deleteTop5ListById,
     getTop5ListById,

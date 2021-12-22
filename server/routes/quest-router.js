@@ -5,5 +5,6 @@ const QuestController = require('../controllers/quest-controller')
 
 router.post('/quests', auth.verify, QuestController.createNewQuest)
 router.get('/allquests', auth.verify, QuestController.retrieveAllUserQuests)
+router.delete('/quests/:id', auth.verify, QuestController.deleteQuestById)
 
 module.exports = router

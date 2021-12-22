@@ -82,7 +82,43 @@ retrieveAllUserQuests = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+deleteQuestById = async (req, res) => {
+    console.log("delete quest with id: " + JSON.stringify(req.params.id));
+    console.log("delete " + req.params.id);
+    Quest.findById({ _id: req.params.id }, (err, quest) => {
+        console.log("quest found: " + JSON.stringify(quest));
+        if (err) {
+            return res.status(404).json({
+                errorMessage: 'quest not found!',
+            })
+        }
+
+        // DOES THIS LIST BELONG TO THIS USER?
+        async function asyncFindUser(list) {
+            User.findOne({ email: list.ownerEmail }, (err, user) => {
+                console.log("user._id: " + user._id);
+                console.log("req.userId: " + req.userId);
+                if (user._id == req.userId) {
+                    console.log("correct user!");
+                    Quest.findOneAndDelete({ _id: req.params.id }, () => {
+                        return res.status(200).json({});
+                    }).catch(err => console.log(err))
+                }
+                else {
+                    console.log("incorrect user!");
+                    return res.status(400).json({ 
+                        errorMessage: "authentication error" 
+                    });
+                }
+            });
+        }
+        asyncFindUser(quest);
+    })
+}
+
+
 module.exports = {
     createNewQuest,
-    retrieveAllUserQuests
+    retrieveAllUserQuests,
+    deleteQuestById
 }

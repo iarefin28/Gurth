@@ -25,9 +25,10 @@ const style = {
 };
 export default function DeleteQuestModal(props) {     
     const {store} = useContext(GlobalStoreContext);
-    const { nameOfQuest, endDate, increase_stat} = props;
     
     function handleAbandonQuest(event){
+        //console.log(store.selectedQuest[0])
+        store.deleteQuestById(store.selectedQuest[0]);
         store.unshowDeleteQuestModal();
     }
 

@@ -107,6 +107,7 @@ function GlobalStoreContextProvider(props) {
 
     store.createNewQuest = async function (questName, endDate, statToUpdate){
         let response = await api.createNewQuest(questName, endDate, statToUpdate, auth.user.email);
+        store.retrieveAllUserQuests(); //this code updates the quest view 
     }
 
 
@@ -139,6 +140,11 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL,
             payload: []
         });
+    }
+
+    store.deleteQuestById = async function(id){
+        let response = await api.deleteQuestById(id);
+        store.retrieveAllUserQuests();
     }
 
     return (

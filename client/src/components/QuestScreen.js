@@ -36,6 +36,8 @@ export default function QuestScreen() {
 		console.log(store.ADD_QUEST_ACTIVE)
 	}
 
+	
+
 	let quests = "";
 	if(store){
 		console.log(store.QUESTS)
