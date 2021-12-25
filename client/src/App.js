@@ -9,7 +9,8 @@ import {
     LoginScreen,
     RegisterScreen,
     QuestScreen,
-    HomeScreen
+    HomeScreen,
+    FitnessScreen
 } from './components'
 
 /*
@@ -33,6 +34,7 @@ const App = () => {
                         <Route path="/login/" exact component={LoginScreen} />
                         <Route path="/register/" exact component={RegisterScreen} />
                         <Route path="/quests/" exact component={QuestScreen} />
+                        <Route path="/fitness/" exact component={FitnessScreen} />
                         <Route path="/homescreen/" exact component={HomeScreen} />
                     </Switch>
                 </GlobalStoreContextProvider>

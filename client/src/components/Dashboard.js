@@ -48,6 +48,10 @@ export default function Dashboard() {
       history.push("/");
   	}
 
+    function handleLoadFitness(event) {
+        history.push("/fitness")
+    }
+
 	function handleLogout(event){
 		console.log("Logout")
 		auth.logoutUser();
@@ -112,7 +116,7 @@ export default function Dashboard() {
         <IconButton color="secondary" disabled="true">
             <BackpackIcon></BackpackIcon>
         </IconButton>
-        <IconButton color="secondary" disabled="true">
+        <IconButton color="secondary" onClick={handleLoadFitness}>
             <FitnessCenterIcon></FitnessCenterIcon>
         </IconButton>
         <IconButton color="secondary" disabled="true">

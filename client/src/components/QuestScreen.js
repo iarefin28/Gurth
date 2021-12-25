@@ -76,7 +76,7 @@ export default function QuestScreen() {
 						<DeleteQuestModal/>
 						<CompleteQuestModal/>
 					</Box>
-					<Box>
+					<Box sx={{pl: 10}}>
 						<Typography variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Today's Agenda</Typography>
 					</Box>
 				</Paper>
