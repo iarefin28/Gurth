@@ -36,7 +36,6 @@ export default function DeleteQuestModal(props) {
         store.unshowDeleteQuestModal();
     }
 
-    console.log(store.selectedQuest)
     return (
         <Modal
             open={store.deleteQuestModalVisible == true}

@@ -16,11 +16,12 @@ function PlayerSkills()
         store.showAddSkillModal();
     }
 
+    useEffect( () => {store.retrieveAllUserSkills()})
     
 
     let skills = ""
     if(store.SKILLS != null){
-        //console.log(store.SKILLS);
+        console.log(store.SKILLS);
         skills = 
             <List sx={{textAlign: "right"}}>
                 {

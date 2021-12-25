@@ -34,6 +34,11 @@ export default function Dashboard() {
 	const {auth} = useContext(AuthContext);
   	const {store} = useContext(GlobalStoreContext);
 
+    /**Technically player skills only change on completion or deletion of a quest. 
+	 * So setting the store.QUESTS to the dependency value for the useEffect does the job. Although, 
+	 * not sure why putting store.SKILLS causes an infinite loop. 
+	 */
+	useEffect( () => {store.retrieveAllUserSkills()}, [store.QUESTS]) 
 
     function handleLoadQuests(event) {
         history.push("/quests");
@@ -62,7 +67,7 @@ export default function Dashboard() {
             </List>
     }
 
-	console.log(skills);
+	//console.log(store.SKILLS);
 
   return (
     <Box sx={{ display: 'flex' }}>

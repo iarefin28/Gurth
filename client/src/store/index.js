@@ -37,7 +37,7 @@ function GlobalStoreContextProvider(props) {
         QUESTS: [],
         SKILLS: [],
         deleteQuestModalVisible: false,
-        selectedQuest: [], //array of size 2, first element is the id, second element is the id 
+        selectedQuest: [], //array of size 3, first element is the id, second element is the name, third is stats to inc
         addSkillModalVisible: false,
         completeQuestModalVisible: false
     });
@@ -213,7 +213,7 @@ function GlobalStoreContextProvider(props) {
         let response = await api.retrieveAllUserSkills();
         if(response.status === 200){
             let skillsArray = response.data.userSkills;
-            console.log(skillsArray)
+            //console.log(skillsArray)
             storeReducer({
                 type: GlobalStoreActionType.LOAD_ALL_USER_SKILLS,
                 payload: skillsArray
@@ -283,7 +283,16 @@ function GlobalStoreContextProvider(props) {
 
     store.updateSkills = async function(stats){
         let response = await api.updateSkills(stats);
-        store.retrieveAllUserSkills();
+        if(response.status === 200){
+            let skillsArray = response.data.userSkills;
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_SKILLS,
+                payload: skillsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE SKILLS");
+        }
     }
 
     return (

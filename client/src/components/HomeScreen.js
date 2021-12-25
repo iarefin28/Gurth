@@ -7,12 +7,8 @@ export default function HomeScreen() {
     const {store} = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        //store.retrieveAllUserQuests();
-        store.retrieveAllUserSkills();
+        store.retrieveAllUserQuests();
     }, []);
-
-    console.log(store.SKILLS);
-    console.log(store.QUESTS);
 
     return (
         <Dashboard></Dashboard>

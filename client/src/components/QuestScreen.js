@@ -16,8 +16,6 @@ const drawerWidth = 450;
 
 export default function QuestScreen() {
 	const { store } = useContext(GlobalStoreContext);
-	//const [currentStats, newStats] = useState(store.SKILLS);
-	//console.log(currentStats);
 	
 
 	useEffect(() => {
@@ -40,7 +38,7 @@ export default function QuestScreen() {
 
 	let quests = "";
 	if(store){
-		console.log(store.QUESTS)
+		//console.log(store.QUESTS)
 		quests =
 			<Box sx={{display: "flex", flexDirection: "column", pl: 3}}>
 			{

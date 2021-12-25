@@ -50,18 +50,11 @@ export default function AddQuestModal() {
         if(sel) statsToUpdate.push("Self-Discipline")
         if(pro) statsToUpdate.push("Programming");
 
-        //const todaysDate = new Date()
-        //const diff = value.getTime() - todaysDate.getTime() 
-        //const diffInDays = diff / (1000 * 3600 * 24);
         const valueTime = value.getTime();
-        //console.log(statsToUpdate);
-        //console.log(Math.ceil(diffInDays));
-        //console.log(questName);
-
-        //now lets work on some backend stuff to make this work 
+        
         store.createNewQuest(questName, valueTime, statsToUpdate);
         handleCloseModal();
-        store.retrieveAllUserQuests();
+        //store.retrieveAllUserQuests();
     }
 
     function handleCloseModal(event) {

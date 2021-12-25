@@ -159,6 +159,7 @@ retrieveAllUserSkills = async (req, res) => {
     console.log("get all user skills");
     await User.findOne({ _id: req.userId }, (err, user) => {
         let userSkills = user.skills;
+        console.log(userSkills);
         return res.status(200).json({ success: true, userSkills: userSkills })
     }).catch(err => console.log(err))
 }
@@ -201,7 +202,7 @@ updateSkills = (req, res) => {
         console.log("updating the user's skill" + user.skills)
         user.save().then(() => {
                 //console.log("skills" +user.skills[0].skillTuple)
-                return res.status(201).json({})
+                return res.status(200).json({ success: true, userSkills: user.skills })
             }).catch(error => {
                 return res.status(400).json({
                     errorMessage: 'Skills not updated!'

@@ -36,32 +36,12 @@ export default function CompleteQuestModal(props) {
         store.unshowCompleteQuestModal();
     }
 
-    //console.log(store.selectedQuest[2])
-
-    // let stats = "";
-    // if(store.selectedQuest[2] != null){
-    //     let stats =
-    //         <Box sx={{display: "flex", flexDirection: "column", pl: 3}}>
-    //         {
-    //             (store.selectedQuest[2]).map((pair) => (
-    //                 <Typography 
-    //                     variant="h5" 
-    //                     align="center" 
-    //                     sx={{backgroundColor: "green", fontFamily: "Lucida Console", color: "white"}}
-    //                 >
-    //                     Reward: +1 {pair}
-    //                 </Typography>
-    //             ))
-    //         }
-    //         </Box>
-    // }
 
     let reward = ""
     if(store.selectedQuest[2] != null){
         (store.selectedQuest[2]).forEach(element => reward+=("+1 " + element + ", "));
 
     }
-
 
     return (
         <Modal
