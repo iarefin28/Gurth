@@ -44,6 +44,10 @@ function Quest(props) {
 		store.showDeleteQuestModal(questId, nameOfQuest);
 	}
 
+    const handleCompleteQuest = (event) => {
+        store.showCompleteQuestModal(questId, nameOfQuest, increase_stat);
+    }
+
     return (
         <Box sx={{display: "flex", flexDirection: "column"}}>
             <Box sx={{
@@ -78,7 +82,7 @@ function Quest(props) {
                 justifyContent: "right"
             }}>
                 <IconButton onClick={handleDeleteQuest}><IndeterminateCheckBoxIcon></IndeterminateCheckBoxIcon></IconButton>
-                <IconButton><CheckBoxIcon></CheckBoxIcon></IconButton>
+                <IconButton onClick={handleCompleteQuest}><CheckBoxIcon></CheckBoxIcon></IconButton>
             </Box>
         </Box>
     );

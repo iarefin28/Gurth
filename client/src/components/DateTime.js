@@ -33,9 +33,11 @@ var DateTime = () =>
         }
     }
     else{
-        displayTime = showDate.getHours()+':'+showDate.getMinutes() + "AM " + showDate.getSeconds();
         if(showDate.getMinutes() < 10){
-            displayTime = (showDate.getHours()-12)+':0'+showDate.getMinutes() + "PM " + showDate.getSeconds();
+            displayTime = (showDate.getHours())+':0'+showDate.getMinutes() + "AM " + showDate.getSeconds();
+        }
+        else{
+            displayTime = showDate.getHours()+':'+showDate.getMinutes() + "AM " + showDate.getSeconds();
         }
     }
 

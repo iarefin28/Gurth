@@ -58,8 +58,8 @@ export default function DeleteQuestModal(props) {
                         PENALTY: -1 CONFIDENCE
                     </Typography>
                     <Box sx={{display: "flex", flexDirection: "row", pt: 2, justifyContent: "center"}}>
+                        <Button sx={{backgroundColor: "green", color: "white", mr: 2}} onClick={handleContinueQuest}>Continue</Button>
                         <Button sx={{backgroundColor: "red", color: "purple", mr: 2}} onClick={handleAbandonQuest}>Abandon</Button>
-                        <Button sx={{backgroundColor: "green", color: "white"}} onClick={handleContinueQuest}>Continue</Button>
                     </Box>
                 </Box>
             </Box>

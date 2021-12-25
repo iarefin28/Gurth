@@ -1,33 +1,33 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import Dashboard from './Dashboard.js'
-import DateTime from './DateTime.js';
-import { AppBar, CssBaseline, Typography } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { Box } from '@mui/system';
-import { Button } from '@mui/material';
+import { useEffect, useContext, useState } from 'react';
 
-import { useContext } from 'react';
 import GlobalStoreContext from '../store/index.js';
+import { List, Drawer, Paper, Button, Box, Toolbar, AppBar, CssBaseline, Typography } from '@mui/material';
+
+//component imports
+import DeleteQuestModal from './DeleteQuestModal.js';
+import CompleteQuestModal from './CompleteQuestModal.js';
 import AddQuestModal from './AddQuestModal.js';
 import Quest from './Quest.js';
-import { List } from '@mui/material';
-import { Drawer } from '@mui/material';
-import { Paper } from '@mui/material';
-import DeleteQuestModal from './DeleteQuestModal.js';
+import Dashboard from './Dashboard.js'
+import DateTime from './DateTime.js';
 
 const drawerWidth = 450;
 
 export default function QuestScreen() {
 	const { store } = useContext(GlobalStoreContext);
-	const toolbarStyle = {
-		minHeight: '72px'
-	};
+	//const [currentStats, newStats] = useState(store.SKILLS);
+	//console.log(currentStats);
 	
+
 	useEffect(() => {
         store.retrieveAllUserQuests();
     }, []);
 
+	const toolbarStyle = {
+		minHeight: '72px'
+	};
+	
 
 	const handleAddQuest = (event) => {
 		console.log("Add a new quest")
@@ -76,6 +76,7 @@ export default function QuestScreen() {
 						<Typography sx={{pl: 3}} variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Your Quests</Typography>
 						{quests}
 						<DeleteQuestModal/>
+						<CompleteQuestModal/>
 					</Box>
 					<Box>
 						<Typography variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Today's Agenda</Typography>

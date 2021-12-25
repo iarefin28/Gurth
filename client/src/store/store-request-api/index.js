@@ -7,7 +7,7 @@
     to use when sending JSON back and forth and it`s a Promise-
     based API which helps a lot with asynchronous communication.
     
-    @author McKilla Gorilla
+    @author Ishan Arefin
 */
 
 import axios from 'axios'
@@ -16,12 +16,7 @@ const api = axios.create({
     baseURL: 'http://localhost:4000/api',
 })
 
-// THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
-// REQUEST METHOD (like get) AND PATH (like /top5list). SOME ALSO
-// REQUIRE AN id SO THAT THE SERVER KNOWS ON WHICH LIST TO DO ITS
-// WORK, AND SOME REQUIRE DATA, WHICH WE WE WILL FORMAT HERE, FOR WHEN
-// WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
-// CUSTOM FILTERS FOR QUERIES
+//THESE ARE THE REQUESTS THAT PERTAIN TO THE QUEST SYSTEM
 export const createNewQuest = (questName, endDate, statsToUpdate, email) => {
     return api.post(`/quests/`, {
         // SPECIFY THE PAYLOAD
@@ -38,33 +33,31 @@ export const retrieveAllUserQuests = () => {
 
 export const deleteQuestById = (id) => api.delete(`/quests/${id}`)
 
-export const createTop5List = (newListName, newItems, userEmail) => {
-    return api.post(`/top5list/`, {
+//THESE ARE THE REQUESTS THAT PERTAIN TO THE SKILL SYSTEM
+export const addSkill = (skillName) => {
+    return api.post(`/skills/`, {
         // SPECIFY THE PAYLOAD
-        name: newListName,
-        items: newItems,
-        ownerEmail: userEmail
+        skillName: skillName
     })
 }
-export const deleteTop5ListById = (id) => api.delete(`/top5list/${id}`)
-export const getTop5ListById = (id) => api.get(`/top5list/${id}`)
-export const getTop5ListPairs = () => api.get(`/top5listpairs/`)
-export const updateTop5ListById = (id, top5List) => {
-    return api.put(`/top5list/${id}`, {
-        // SPECIFY THE PAYLOAD
-        top5List : top5List
+
+export const updateSkills = (stats) => {
+    return api.post(`/updateskills`, {
+        skillsToUpdate: stats
     })
+}
+
+export const retrieveAllUserSkills = () => {
+    return api.get(`/allskills/`);
 }
 
 const apis = {
     createNewQuest,
     retrieveAllUserQuests,
     deleteQuestById,
-    createTop5List,
-    deleteTop5ListById,
-    getTop5ListById,
-    getTop5ListPairs,
-    updateTop5ListById
+    addSkill,
+    updateSkills,
+    retrieveAllUserSkills
 }
 
 export default apis

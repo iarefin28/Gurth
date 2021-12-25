@@ -1,19 +1,42 @@
-import { React, useState, useEffect } from 'react'
-
+import { React, useState, useEffect, useContext } from 'react'
+import Box from '@mui/material/Box';
+import { Typography, Button } from '@mui/material';
+import GlobalStoreContext from '../store';
+import AddSkillModal from './AddSkillModal.js';
+import List from '@mui/material/List';
 /** 
  */
 
 
-var PlayerSkills = () =>
+function PlayerSkills()
 {
+    const {store} = useContext(GlobalStoreContext);
+
+    function handleAddSkill(){
+        store.showAddSkillModal();
+    }
+
+    
+
+    let skills = ""
+    if(store.SKILLS != null){
+        //console.log(store.SKILLS);
+        skills = 
+            <List sx={{textAlign: "right"}}>
+                {
+                    store.SKILLS.map((pair) => (
+                        <Typography sx={{color: "purple", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
+                    ))
+                }
+            </List>
+    }
+
     return(
-        <div id="player-skills">
-            <div> Working Out: 110 </div>
-            <div> Introspection: 94 </div>
-            <div> Confidence: 94 </div>
-            <div> Self-Discipline: 94 </div>
-            <div> Programming: 94 </div>
-        </div>
+        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            {/*<Button onClick={handleAddSkill}>Add a skill</Button>*/}
+            {/*<AddSkillModal></AddSkillModal>*/}
+            {skills}
+        </Box>
     )
 }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,10 +13,7 @@ import PlayerSkills from './PlayerSkills.js';
 import AuthContext from '../auth/index.js';
 import { GlobalStoreContext } from '../store'
 
-import { List } from '@mui/material';
-import { ListItem } from '@mui/material';
-import { ListItemIcon } from '@mui/material';
-import { ListItemText } from '@mui/material';
+import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIcon from '@mui/icons-material/Assignment';
@@ -35,7 +32,7 @@ const drawerWidth = 450;
 export default function Dashboard() {
 	const history = useHistory();
 	const {auth} = useContext(AuthContext);
-  const {store} = useContext(GlobalStoreContext);
+  	const {store} = useContext(GlobalStoreContext);
 
 
     function handleLoadQuests(event) {
@@ -50,6 +47,22 @@ export default function Dashboard() {
 		console.log("Logout")
 		auth.logoutUser();
 	}
+
+
+	let skills = ""
+    if(store.SKILLS != null){
+        //console.log(store.SKILLS);
+        skills = 
+            <List sx={{textAlign: "right"}}>
+                {
+                    store.SKILLS.map((pair) => (
+                        <Typography sx={{color: "purple", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
+                    ))
+                }
+            </List>
+    }
+
+	console.log(skills);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -80,7 +93,9 @@ export default function Dashboard() {
         <Divider/>
         <PlayerStatus/>
         <Divider/>
-        <PlayerSkills/>
+		<Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+			{skills}
+		</Box>
         <Divider />
 
         <IconButton color="secondary" onClick={handleLoadHome}>

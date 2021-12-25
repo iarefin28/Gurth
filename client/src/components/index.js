@@ -10,6 +10,8 @@ import QuestScreen from './QuestScreen'
 import AddQuestModal from './AddQuestModal'
 import Quest from './Quest'
 import DeleteQuestModal from './DeleteQuestModal'
+import AddSkillModal from './AddSkillModal'
+import CompleteQuestModal from './CompleteQuestModal'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -28,5 +30,7 @@ export {
     QuestScreen,
     AddQuestModal,
     DeleteQuestModal,
+    AddSkillModal,
+    CompleteQuestModal,
     Quest
 }

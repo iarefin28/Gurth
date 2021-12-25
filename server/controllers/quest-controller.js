@@ -93,16 +93,20 @@ deleteQuestById = async (req, res) => {
             })
         }
 
-        // DOES THIS LIST BELONG TO THIS USER?
-        async function asyncFindUser(list) {
-            User.findOne({ email: list.ownerEmail }, (err, user) => {
+        // DOES THIS QUEST BELONG TO THIS USER?
+        async function asyncFindUser(quest) {
+            User.findOne({ email: quest.ownerEmail }, (err, user) => {
                 console.log("user._id: " + user._id);
                 console.log("req.userId: " + req.userId);
                 if (user._id == req.userId) {
                     console.log("correct user!");
-                    Quest.findOneAndDelete({ _id: req.params.id }, () => {
-                        return res.status(200).json({});
-                    }).catch(err => console.log(err))
+                    let index = user.quests.indexOf(req.params.id); //
+                    user.quests.splice(index, 1);
+                    user.save().then(() => {
+                        Quest.findOneAndDelete({ _id: req.params.id }, () => {
+                            return res.status(200).json({});
+                        }).catch(err => console.log(err))
+                    })
                 }
                 else {
                     console.log("incorrect user!");
@@ -117,8 +121,101 @@ deleteQuestById = async (req, res) => {
 }
 
 
+addSkill = (req, res) => {
+    const body = req.body;
+    console.log(body);
+    if (!body) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    console.log("creating skill: " + JSON.stringify(body));
+    if (!JSON.stringify(body)) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    // REMEMBER THAT OUR AUTH MIDDLEWARE GAVE THE userId TO THE req
+    console.log("skill created for " + req.userId);
+    User.findOne({ _id: req.userId }, (err, user) => {
+        console.log("user found: " + JSON.stringify(user));
+        user.skills.push([body.skillName, 0]);
+        user
+            .save()
+            .then(() => {
+                        return res.status(201).json({})
+                    }).catch(error => {
+                        return res.status(400).json({
+                            errorMessage: 'Skill Not Created!'
+                        })
+                    })
+            });
+}
+
+
+retrieveAllUserSkills = async (req, res) => {
+    console.log("get all user skills");
+    await User.findOne({ _id: req.userId }, (err, user) => {
+        let userSkills = user.skills;
+        return res.status(200).json({ success: true, userSkills: userSkills })
+    }).catch(err => console.log(err))
+}
+
+
+//this backend code just updates the skills by one level. 
+//maybe later will implement functionalities so different quests can add different amount of stat points to a skill
+//and then with this new idea maybe sort the quests on the quest home page by the total amount of skill points - to represent some kind of priority system
+updateSkills = (req, res) => {
+    const body = req.body;
+    console.log(body.skillsToUpdate);
+    if (!body) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    console.log("updating following skills: " + JSON.stringify(body));
+    if (!JSON.stringify(body)) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    // REMEMBER THAT OUR AUTH MIDDLEWARE GAVE THE userId TO THE req
+    console.log("skill updating for " + req.userId);
+    User.findOne({ _id: req.userId }, (err, user) => {
+        console.log("user found: " + JSON.stringify(user));
+        let newSkills = [];
+        (user.skills).forEach(element => {
+            if(body.skillsToUpdate.includes(element[0])){
+                newSkills.push([element[0], element[1]+1]);
+            }
+            else{
+                newSkills.push([element[0], element[1]]);
+            }
+        })
+        console.log("updated skills" + newSkills);
+        user.skills = newSkills;
+        console.log("updating the user's skill" + user.skills)
+        user.save().then(() => {
+                //console.log("skills" +user.skills[0].skillTuple)
+                return res.status(201).json({})
+            }).catch(error => {
+                return res.status(400).json({
+                    errorMessage: 'Skills not updated!'
+                })
+            })
+    })
+}
+
+
 module.exports = {
     createNewQuest,
     retrieveAllUserQuests,
-    deleteQuestById
+    deleteQuestById,
+    addSkill,
+    updateSkills,
+    retrieveAllUserSkills
 }

@@ -29,7 +29,6 @@ export default function AddQuestModal() {
     const [questName, questNameChange] = useState("");
     const [fit, selectFit] = useState(false);
     const [intro, selectIntro] = useState(false);
-    const [cok, selectCok] = useState(false);
     const [con, selectCon] = useState(false);
     const [sel, selectSel] = useState(false);
     const [pro, selectPro] = useState(false);
@@ -47,7 +46,6 @@ export default function AddQuestModal() {
         const statsToUpdate = [];
         if(fit) statsToUpdate.push("Fitness");
         if(intro) statsToUpdate.push("Introspection");
-        if(cok) statsToUpdate.push("cooking");
         if(con) statsToUpdate.push("Confidence")
         if(sel) statsToUpdate.push("Self-Discipline")
         if(pro) statsToUpdate.push("Programming");
@@ -69,7 +67,6 @@ export default function AddQuestModal() {
     function handleCloseModal(event) {
         selectFit(false);
         selectIntro(false);
-        selectCok(false);
         selectCon(false);
         selectSel(false);
         selectPro(false);
@@ -85,7 +82,7 @@ export default function AddQuestModal() {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundImage: "linear-gradient(#c555a1, #452465)", fontFamily: "Lexend Exa", color: "orange"}}
+                        sx={{backgroundImage: "linear-gradient(#c555a1, #452465)", fontFamily: "Lucida Console", color: "orange"}}
                     >
                         THE SYSTEM WILL NOW ADD A QUEST.
                     </Typography>
@@ -106,7 +103,6 @@ export default function AddQuestModal() {
                             <Typography variant="h5" sx={{fontFamily: "Lucida Console", color: "purple"}}> Stats to Increase:</Typography>
                             <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectFit(!fit)}/>} label="Fitness"/>
                             <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectIntro(!intro)} />} label="Introspection" />
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectCok(!cok)}/>} label="Cooking" />
                             <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectCon(!con)}/>} label="Confidence"/>
                             <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectSel(!sel)}/>} label="Self-Discipline"/>
                             <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectPro(!pro)}/>} label="Programming"/>
