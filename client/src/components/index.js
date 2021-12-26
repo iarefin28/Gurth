@@ -13,6 +13,8 @@ import DeleteQuestModal from './DeleteQuestModal'
 import AddSkillModal from './AddSkillModal'
 import CompleteQuestModal from './CompleteQuestModal'
 import FitnessScreen from './FitnessScreen.js'
+import DiaryScreen from './DiaryScreen'
+import AddWorkoutModal from './AddWorkoutModal'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -34,5 +36,7 @@ export {
     AddSkillModal,
     CompleteQuestModal,
     Quest,
-    FitnessScreen
+    FitnessScreen,
+    DiaryScreen,
+    AddWorkoutModal
 }

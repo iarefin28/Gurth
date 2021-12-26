@@ -25,7 +25,9 @@ export const GlobalStoreActionType = {
     SHOW_COMPLETE_QUEST_MODAL: "SHOW_COMPLETE_QUEST_MODAL",
     UNSHOW_COMPLETE_QUEST_MODAL: "UNSHOW_COMPLETE_QUEST_MODAL",
     SHOW_ADD_SKILL_MODAL: "SHOW_ADD_SKILL_MODAL",
-    UNSHOW_ADD_SKILL_MODAL: "UNSHOW_ADD_SKILL_MODAL"
+    UNSHOW_ADD_SKILL_MODAL: "UNSHOW_ADD_SKILL_MODAL",
+    SHOW_ADD_WORKOUT_MODAL: "SHOW_ADD_WORKOUT_MODAL",
+    UNSHOW_ADD_WORKOUT_MODAL: "UNSHOW_ADD_WORKOUT_MODAL"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -39,7 +41,8 @@ function GlobalStoreContextProvider(props) {
         deleteQuestModalVisible: false,
         selectedQuest: [], //array of size 3, first element is the id, second element is the name, third is stats to inc
         addSkillModalVisible: false,
-        completeQuestModalVisible: false
+        completeQuestModalVisible: false,
+        addWorkoutModalVisible: false,
     });
     const history = useHistory();
 
@@ -63,7 +66,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.CANCEL_NEW_QUEST: {
@@ -74,7 +78,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_QUESTS: {
@@ -85,7 +90,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_SKILLS: {
@@ -96,7 +102,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.SHOW_DELETE_QUEST_MODAL: {
@@ -107,7 +114,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: true,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL: {
@@ -118,7 +126,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.SHOW_COMPLETE_QUEST_MODAL: {
@@ -129,7 +138,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: true
+                    completeQuestModalVisible: true,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.UNSHOW_COMPLETE_QUEST_MODAL: {
@@ -140,7 +150,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.SHOW_ADD_SKILL_MODAL: {
@@ -151,7 +162,8 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: true,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             case GlobalStoreActionType.UNSHOW_ADD_SKILL_MODAL: {
@@ -162,7 +174,32 @@ function GlobalStoreContextProvider(props) {
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
-                    completeQuestModalVisible: false
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
+                });
+            }
+            case GlobalStoreActionType.SHOW_ADD_WORKOUT_MODAL: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    SKILLS: store.SKILLS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: true
+                });
+            }
+            case GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    SKILLS: store.SKILLS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
                 });
             }
             default:
@@ -293,6 +330,15 @@ function GlobalStoreContextProvider(props) {
         else{
             console.log("API FAILED TO GET THE SKILLS");
         }
+    }
+
+    store.showAddWorkoutModal = async function(){
+        storeReducer({type: GlobalStoreActionType.SHOW_ADD_WORKOUT_MODAL})
+    }
+
+    
+    store.unshowAddWorkoutModal = async function(){
+        storeReducer({type: GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL})
     }
 
     return (

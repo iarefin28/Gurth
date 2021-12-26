@@ -52,6 +52,10 @@ export default function Dashboard() {
         history.push("/fitness")
     }
 
+    function handleLoadDiary(event){
+      history.push("/diary");
+    }
+
 	function handleLogout(event){
 		console.log("Logout")
 		auth.logoutUser();
@@ -125,8 +129,8 @@ export default function Dashboard() {
         <IconButton color="secondary" disabled="true">
             <CheckIcon></CheckIcon>
         </IconButton>
-        <IconButton color="secondary" disabled="true">
-            <LockIcon></LockIcon>
+        <IconButton color="secondary" onClick={handleLoadDiary}>
+            <MenuBookIcon></MenuBookIcon>
         </IconButton>
       </Drawer>
     </Box>
