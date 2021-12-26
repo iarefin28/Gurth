@@ -48,6 +48,9 @@ export default function AddWorkoutModal() {
     }
 
     function handleCloseModal(event){
+        onChange(new Date());
+        musclesHitChange("");
+        setEx([]);
         store.unshowAddWorkoutModal();
     }
 
@@ -56,6 +59,7 @@ export default function AddWorkoutModal() {
         //console.log(musclesHit)
         //console.log(ex)
         store.logNewWorkout(value.toDateString(), musclesHit, ex);
+        handleCloseModal();
     }
 
 

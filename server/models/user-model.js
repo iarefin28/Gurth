@@ -9,7 +9,8 @@ const UserSchema = new Schema(
         email: { type: String, required: true },
         passwordHash: { type: String, required: true },
         quests: [{type: ObjectId, ref: 'Quest'}],
-        skills: {type: [Object]}
+        skills: {type: [Object]},
+        workouts: [{type: ObjectId, ref: 'Workout'}]
     },
     { timestamps: true },
 )

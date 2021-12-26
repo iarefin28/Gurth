@@ -16,6 +16,10 @@ const api = axios.create({
     baseURL: 'http://localhost:4000/api',
 })
 
+const workoutapi = axios.create({
+    baseURL: 'http://localhost:4000/workoutapi',
+})
+
 //THESE ARE THE REQUESTS THAT PERTAIN TO THE QUEST SYSTEM
 export const createNewQuest = (questName, endDate, statsToUpdate, email) => {
     return api.post(`/quests/`, {
@@ -53,7 +57,7 @@ export const retrieveAllUserSkills = () => {
 
 //THESE ARE THE REQUESTS THAT PERTAIN TO THE WORKOUTS 
 export const addNewWorkout = (date, musclesHit, exercisesArr, email) => {
-    return api.post(`/workouts/`, {
+    return workoutapi.post(`/workouts/`, {
         // SPECIFY THE PAYLOAD
         workoutDate: date,
         musclesHit: musclesHit,

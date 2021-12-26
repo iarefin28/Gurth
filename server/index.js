@@ -23,6 +23,8 @@ const authRouter = require('./routes/auth-router')
 app.use('/auth', authRouter)
 const questRouter = require('./routes/quest-router')
 app.use('/api', questRouter)
+const workoutRouter = require('./routes/workout-router')
+app.use('/workoutapi', workoutRouter)
 
 // INITIALIZE OUR DATABASE OBJECT
 const db = require('./db')
