@@ -51,13 +51,25 @@ export const retrieveAllUserSkills = () => {
     return api.get(`/allskills/`);
 }
 
+//THESE ARE THE REQUESTS THAT PERTAIN TO THE WORKOUTS 
+export const addNewWorkout = (date, musclesHit, exercisesArr, email) => {
+    return api.post(`/workouts/`, {
+        // SPECIFY THE PAYLOAD
+        workoutDate: date,
+        musclesHit: musclesHit,
+        exercises: exercisesArr,
+        ownerEmail: email
+    })
+}
+
 const apis = {
     createNewQuest,
     retrieveAllUserQuests,
     deleteQuestById,
     addSkill,
     updateSkills,
-    retrieveAllUserSkills
+    retrieveAllUserSkills,
+    addNewWorkout
 }
 
 export default apis

@@ -341,6 +341,10 @@ function GlobalStoreContextProvider(props) {
         storeReducer({type: GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL})
     }
 
+    store.logNewWorkout = async function (date, musclesHit, exercisesArr){
+        let response = await api.addNewWorkout(date, musclesHit, exercisesArr, auth.user.email);
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

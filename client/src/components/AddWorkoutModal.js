@@ -37,10 +37,6 @@ export default function AddWorkoutModal() {
         musclesHitChange(event.target.value);
     }
 
-    function handleExNameChange(event){
-
-    }
-
     function handleAddEx(event){
         if(event.key === "Enter"){
             setEx((prevEx) => [
@@ -48,9 +44,20 @@ export default function AddWorkoutModal() {
                 event.target.value
             ])
         }
+
     }
 
-    console.log(value.getMonth()+1)
+    function handleCloseModal(event){
+        store.unshowAddWorkoutModal();
+    }
+
+    function handleLogWorkout(event){
+        //console.log(value)
+        //console.log(musclesHit)
+        //console.log(ex)
+        store.logNewWorkout(value.toDateString(), musclesHit, ex);
+    }
+
 
     let exerciseArr = ex;
     let exercises = ""
@@ -92,7 +99,6 @@ export default function AddWorkoutModal() {
                         label="Add Exercise" 
                         variant="standard"
                         textColor="blue" 
-                        onChange={handleExNameChange}
                         onKeyPress={handleAddEx}
                         sx={{mb: 2, fontFamily: "Lucida Console"}}
                     />
@@ -108,12 +114,16 @@ export default function AddWorkoutModal() {
                     flexDirection: "column"
                 }}>
                     <Typography align="center" variant="h5" sx={{color: "white", fontFamily: "Lucida Console"}}>Your Workout</Typography>
-                    <Typography variant="h6" sx={{color: "white", fontFamily: "Lucida Console", pb: 5}}>Date of Workout: </Typography>
+                    <Typography variant="h6" sx={{color: "white", fontFamily: "Lucida Console", pb: 1}}>Date of Workout: {value.toDateString()} </Typography>
                     <Typography variant="h6" sx={{color: "white", fontFamily: "Lucida Console"}}>Muscles Trained:</Typography>
-                    <Typography sx={{color: "white", fontFamily: "Lucida Console", pb: 5}}>{musclesHit}</Typography>
+                    <Typography sx={{color: "white", fontFamily: "Lucida Console", pb: 3}}>{musclesHit}</Typography>
                     <Typography variant="h6" sx={{color: "white", fontFamily: "Lucida Console"}}>Exercises:</Typography>
                     <Typography sx={{color: "white", fontFamily: "Lucida Console", pb: 5}}>{exercises}</Typography>
                     
+                    <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+                        <Button onClick={handleCloseModal} sx={{backgroundColor: "white", color: "black", mr: 1}}>Discard Workout</Button>
+                        <Button onClick={handleLogWorkout} sx={{backgroundColor: "white", color: "black"}}>Log Workout</Button>
+                    </Box>
                 </Box>        
             </Box>
         </Modal>
