@@ -388,6 +388,33 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.unloadWorkouts = async function(){
+        storeReducer({
+            type: GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS,
+            payload: []
+        })
+    }
+
+    store.retrieveAllWorkoutsByDate = async function(dateString){
+        console.log(dateString)
+        let response = await api.retrieveAllWorkoutsByDate(dateString);
+        //console.log(response.data.userWorkouts)
+        if(response.status === 200){
+            let workoutsArray = response.data.userWorkouts.reverse();
+
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS,
+                payload: workoutsArray
+            })
+        }
+        else{
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS,
+                payload: undefined
+            })
+        }
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

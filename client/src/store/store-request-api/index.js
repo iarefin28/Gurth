@@ -70,6 +70,9 @@ export const retrieveAllWorkouts = () => {
     return workoutapi.get(`/allworkouts/`);
 }
 
+export const retrieveAllWorkoutsByDate = (dateString) => workoutapi.get(`/datedworkouts/${dateString}`);
+
+
 const apis = {
     createNewQuest,
     retrieveAllUserQuests,
@@ -78,7 +81,8 @@ const apis = {
     updateSkills,
     retrieveAllUserSkills,
     addNewWorkout,
-    retrieveAllWorkouts
+    retrieveAllWorkouts,
+    retrieveAllWorkoutsByDate
 }
 
 export default apis
