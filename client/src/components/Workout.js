@@ -30,11 +30,11 @@ function Workout(props) {
     return (
             <Box sx={{
                 backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
-                borderTop: 2,
-                borderRight: 2,
-                borderBottom: 2,
-                borderLeft: 2,
-                borderColor: 'white',
+                borderTop: 1,
+                borderRight: 1,
+                borderBottom: 1,
+                borderLeft: 1,
+                borderColor: 'silver',
                 borderRadius: 0,
                 width: "90%",
                 minHeight: 300,
