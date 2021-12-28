@@ -69,7 +69,7 @@ export default function Dashboard() {
             <List sx={{textAlign: "right"}}>
                 {
                     store.SKILLS.map((pair) => (
-                        <Typography sx={{color: "purple", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
+                        <Typography sx={{color: "white", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
                     ))
                 }
             </List>
@@ -87,7 +87,7 @@ export default function Dashboard() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundImage: "linear-gradient(#d07a82, #dcae6d)", 
+            backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)", 
           },
         }}
         variant="permanent"
@@ -95,7 +95,7 @@ export default function Dashboard() {
       >
         <Box justifyContent="center" sx={{ display: "flex", flexDirection: "row"}}>
 			<Box>
-				<IconButton color="secondary" onClick={handleLogout}>
+				<IconButton sx={{color: "white"}}  onClick={handleLogout}>
             		<LogoutIcon></LogoutIcon>
         		</IconButton>
 			</Box>
@@ -111,25 +111,25 @@ export default function Dashboard() {
 		</Box>
         <Divider />
 
-        <IconButton color="secondary" onClick={handleLoadHome}>
+        <IconButton sx={{color: "white"}} onClick={handleLoadHome}>
             <HomeIcon></HomeIcon>
         </IconButton>
-        <IconButton color="secondary" onClick={handleLoadQuests}>
+        <IconButton sx={{color: "white"}}  onClick={handleLoadQuests}>
             <AssignmentIcon></AssignmentIcon>
         </IconButton>
-        <IconButton color="secondary" disabled="true">
+        <IconButton sx={{color: "white"}}  disabled="true">
             <BackpackIcon></BackpackIcon>
         </IconButton>
-        <IconButton color="secondary" onClick={handleLoadFitness}>
+        <IconButton sx={{color: "white"}}  onClick={handleLoadFitness}>
             <FitnessCenterIcon></FitnessCenterIcon>
         </IconButton>
-        <IconButton color="secondary" disabled="true">
+        <IconButton sx={{color: "white"}}  disabled="true">
             <WorkIcon></WorkIcon>
         </IconButton>
-        <IconButton color="secondary" disabled="true">
+        <IconButton sx={{color: "white"}}  disabled="true">
             <CheckIcon></CheckIcon>
         </IconButton>
-        <IconButton color="secondary" onClick={handleLoadDiary}>
+        <IconButton sx={{color: "white"}}  onClick={handleLoadDiary}>
             <MenuBookIcon></MenuBookIcon>
         </IconButton>
       </Drawer>

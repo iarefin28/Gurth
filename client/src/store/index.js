@@ -27,7 +27,8 @@ export const GlobalStoreActionType = {
     SHOW_ADD_SKILL_MODAL: "SHOW_ADD_SKILL_MODAL",
     UNSHOW_ADD_SKILL_MODAL: "UNSHOW_ADD_SKILL_MODAL",
     SHOW_ADD_WORKOUT_MODAL: "SHOW_ADD_WORKOUT_MODAL",
-    UNSHOW_ADD_WORKOUT_MODAL: "UNSHOW_ADD_WORKOUT_MODAL"
+    UNSHOW_ADD_WORKOUT_MODAL: "UNSHOW_ADD_WORKOUT_MODAL",
+    LOAD_ALL_USER_WORKOUTS: "LOAD_ALL_USER_WORKOUTS"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -38,6 +39,7 @@ function GlobalStoreContextProvider(props) {
         ADD_QUEST_ACTIVE: false,
         QUESTS: [],
         SKILLS: [],
+        WORKOUTS: [],
         deleteQuestModalVisible: false,
         selectedQuest: [], //array of size 3, first element is the id, second element is the name, third is stats to inc
         addSkillModalVisible: false,
@@ -63,6 +65,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: true,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -75,6 +78,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -87,6 +91,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: payload,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -99,6 +104,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: payload,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -111,6 +117,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: true,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
@@ -123,6 +130,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
@@ -135,6 +143,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
@@ -147,6 +156,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: store.ADD_QUEST_ACTIVE,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: payload,
                     addSkillModalVisible: false,
@@ -159,6 +169,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: true,
@@ -171,6 +182,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -183,6 +195,7 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -195,6 +208,20 @@ function GlobalStoreContextProvider(props) {
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
                     SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false
+                });
+            }
+            case GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    SKILLS: store.SKILLS,
+                    WORKOUTS: payload,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
@@ -343,6 +370,22 @@ function GlobalStoreContextProvider(props) {
 
     store.logNewWorkout = async function (date, musclesHit, exercisesArr){
         let response = await api.addNewWorkout(date, musclesHit, exercisesArr, auth.user.email);
+    }
+
+    store.retrieveAllWorkouts = async function(){
+        let response = await api.retrieveAllWorkouts();
+        //console.log(response.data.userWorkouts)
+        if(response.status === 200){
+            let workoutsArray = response.data.userWorkouts.reverse();
+
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS,
+                payload: workoutsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE WORKOUTS");
+        }
     }
 
     return (

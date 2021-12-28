@@ -26,7 +26,7 @@ function PlayerSkills()
             <List sx={{textAlign: "right"}}>
                 {
                     store.SKILLS.map((pair) => (
-                        <Typography sx={{color: "purple", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
+                        <Typography sx={{color: "white", fontFamily: "Lucida Console"}}>{pair[0]} {pair[1]}</Typography>
                     ))
                 }
             </List>

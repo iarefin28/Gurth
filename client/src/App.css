@@ -1,5 +1,5 @@
 body {
-  background-color: var(--swatch-foundation);
+  background-color: white;
   margin: 0;
 }
 
@@ -74,7 +74,7 @@ body {
   text-align: center;
   font-family: "Lucida Console";
   font-size: x-large;
-  color: purple;
+  color: white;
 }
 
 #clock-contents {
@@ -83,7 +83,7 @@ body {
 #player-info {
   font-family: "Lucida Console";
   font-size: medium;
-  color: purple;
+  color: white;
   padding-top: 5%;
   padding-left: 5%;
   padding-bottom: 5%;
@@ -95,7 +95,7 @@ body {
   flex-wrap: wrap;
   font-family: "Lucida Console";
   font-size: small;
-  color: purple;
+  color: white;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-right: 40%;

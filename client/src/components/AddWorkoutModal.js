@@ -19,7 +19,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 900,
     height: 600,
-    backgroundImage: "linear-gradient(#d07a82, #dcae6d)",
+    backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -84,7 +84,7 @@ export default function AddWorkoutModal() {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundImage: "linear-gradient(#c555a1, #452465)", fontFamily: "Lucida Console", color: "orange"}}
+                        sx={{backgroundColor: "silver", fontFamily: "Lucida Console", color: "black"}}
                     >
                         THE SYSTEM WILL NOW ADD A WORKOUT.
                     </Typography>
@@ -106,14 +106,14 @@ export default function AddWorkoutModal() {
                         onKeyPress={handleAddEx}
                         sx={{mb: 2, fontFamily: "Lucida Console"}}
                     />
-                    <Typography sx={{fontFamily: "Lucida Console"}}>Date of Workout:</Typography>
+                    <Typography sx={{fontFamily: "Lucida Console", color: "white"}}>Date of Workout:</Typography>
                     <Calendar onChange={onChange} value = {value}/>
                 </Box>
                 <Box sx={{
                     ml: 2, 
                     backgroundColor: "black", 
                     width: "50%", 
-                    borderTop: 3, borderRight: 3, borderBottom: 3, borderLeft: 3, borderColor: 'purple', borderRadius: 4,
+                    borderTop: 3, borderRight: 3, borderBottom: 3, borderLeft: 3, borderColor: 'silver', borderRadius: 4,
                     display: "flex",
                     flexDirection: "column"
                 }}>

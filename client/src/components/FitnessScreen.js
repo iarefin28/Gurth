@@ -1,16 +1,17 @@
-import { CssBaseline, Box, AppBar, Toolbar, Button, IconButton } from "@mui/material";
+import { CssBaseline, Box, AppBar, Toolbar, Button, IconButton, Paper } from "@mui/material";
 import { Typography } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import React, {useState, useContext} from "react";
 import GlobalStoreContext from "../store";
 import { Dashboard } from ".";
 import AddWorkoutModal from "./AddWorkoutModal.js"
+import Workout from "./Workout.js"
 
 const drawerWidth = 450;
 
 export default function FitnessScreen(){
     let [func, setFunc] = useState("Your Fitness")
-    let [addWorkoutBox, setAddWorkoutBox] = useState(false);
+    let [showingWorkouts, setShowingWorkouts] = useState(false)
     const {store} = useContext(GlobalStoreContext)
 
     const toolbarStyle = {
@@ -19,6 +20,34 @@ export default function FitnessScreen(){
 
     function handleShowAddWorkoutModal(){
         store.showAddWorkoutModal();
+         //--- maybe need this line for dynamic loading..... 
+    }
+
+    function handleLoadAllWorkouts(){
+        store.retrieveAllWorkouts();
+        setShowingWorkouts(true)
+    }
+
+    function handleClear(){
+        setShowingWorkouts(false)
+    }
+
+    let workouts = ""
+    if(showingWorkouts){
+        workouts =
+        <Paper square={true} style={{width: "100%", height: "100%", overflow: 'auto', backgroundColor: "black"}} elevation={0} sx={{pt: "130px", display: "flex", flexDirection: "column", alignItems: "center"}}>
+			<Typography variant="h5" sx={{color: "white", fontFamily: "Lucida Console", pb: 3}}>All Workouts</Typography>
+            {
+				store.WORKOUTS.map((pair) => (
+					<Workout
+						key={pair._id}
+                        date = {pair.date}
+                        musclesHit = {pair.musclesHit}
+                        exercises = {pair.exercises}
+					/>
+				))
+			}
+		</Paper>
     }
 
     return (
@@ -32,7 +61,7 @@ export default function FitnessScreen(){
         			sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, alignItems: "center", backgroundColor: "black"}}
     			>
         			<Toolbar style={toolbarStyle}>
-                        <Typography variant="h3" sx={{color: "white", fontFamily: "Lucida Console"}}>{func}</Typography>
+                        <Button onClick={handleClear}><Typography variant="h3" sx={{color: "white", fontFamily: "Lucida Console"}}>{func}</Typography></Button>
 					</Toolbar>
                     <Box sx={{display: "flex", flexDirection: "row", backgroundColor: "black", width: "100%", justifyContent: "center"}}>
                         <Button 
@@ -47,6 +76,7 @@ export default function FitnessScreen(){
                         <Button 
                             onMouseOver={() => setFunc("View All Workouts")} 
                             onMouseLeave={() => setFunc("Your Fitness")} 
+                            onClick={handleLoadAllWorkouts}
                             sx={{color: "white", mb: 1}}
                         >
                             View All Workouts
@@ -75,6 +105,7 @@ export default function FitnessScreen(){
                     </Box>
         		</AppBar>
                 <AddWorkoutModal></AddWorkoutModal>
+                {workouts}
         	</Box>
 
 

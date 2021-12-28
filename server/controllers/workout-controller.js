@@ -41,6 +41,46 @@ addNewWorkout = (req, res) => {
     })
 }
 
+retrieveAllWorkouts = async (req, res) => {
+    console.log("get all user workouts");
+    await User.findOne({ _id: req.userId }, (err, user) => {
+        console.log("find user with id " + req.userId);
+        async function asyncFindWorkouts(email) {
+            console.log("find all workouts for " + email);
+            await Workout.find({ ownerEmail: email }, (err, workouts) => {
+                console.log("workouts: " + JSON.stringify(workouts));
+                if (err) {
+                    return res.status(400).json({ success: false, error: err })
+                }
+                if (!workouts) {
+                    return res
+                        .status(404)
+                        .json({ success: false, error: 'Workouts not found' })
+                }
+                else {
+                    console.log("Send the quest pairs");
+                    let pairs = [];
+                    for (let key in workouts) {
+                        let list = workouts[key];
+                        let pair = {
+                            _id: list._id,
+                            date: list.workoutDate,
+                            musclesHit: list.musclesHit,
+                            exercises: list.exercises,
+                            ownerEmail: list.ownerEmail
+                        };
+                        pairs.push(pair);
+                    }
+                    return res.status(200).json({ success: true, userWorkouts: pairs })
+                }
+            }).catch(err => console.log(err))
+        }
+        asyncFindWorkouts(user.email);
+    }).catch(err => console.log(err))
+}
+
+
 module.exports = {
     addNewWorkout,
+    retrieveAllWorkouts
 }

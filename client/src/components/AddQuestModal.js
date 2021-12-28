@@ -18,7 +18,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 700,
     height: 550,
-    backgroundImage: "linear-gradient(#d07a82, #dcae6d)",
+    backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -75,7 +75,7 @@ export default function AddQuestModal() {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundImage: "linear-gradient(#c555a1, #452465)", fontFamily: "Lucida Console", color: "orange"}}
+                        sx={{backgroundColor: "silver", fontFamily: "Lucida Console", color: "black"}}
                     >
                         THE SYSTEM WILL NOW ADD A QUEST.
                     </Typography>
@@ -89,20 +89,20 @@ export default function AddQuestModal() {
                     />
                     <Box sx={{ display: "flex", flexDirection: "row"}}>
                         <Box>
-                            <Typography variant="h5" sx={{pt: 3, fontFamily: "Lucida Console", color: "purple"}}>Quest End Date:</Typography>
+                            <Typography variant="h5" sx={{pt: 3, fontFamily: "Lucida Console", color: "white"}}>Quest End Date:</Typography>
                             <Calendar onChange={onChange} value = {value}/>
                         </Box>
                         <Box sx={{pl: 2, pt: 3}}>
-                            <Typography variant="h5" sx={{fontFamily: "Lucida Console", color: "purple"}}> Stats to Increase:</Typography>
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectFit(!fit)}/>} label="Fitness"/>
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectIntro(!intro)} />} label="Introspection" />
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectCon(!con)}/>} label="Confidence"/>
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectSel(!sel)}/>} label="Self-Discipline"/>
-                            <FormControlLabel control={<Checkbox sx={{color: "purple"}} onChange={() => selectPro(!pro)}/>} label="Programming"/>
+                            <Typography variant="h5" sx={{fontFamily: "Lucida Console", color: "white"}}> Stats to Increase:</Typography>
+                            <FormControlLabel control={<Checkbox sx={{color: "white"}} onChange={() => selectFit(!fit)}/>} label="Fitness"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "white"}} onChange={() => selectIntro(!intro)} />} label="Introspection" />
+                            <FormControlLabel control={<Checkbox sx={{color: "white"}} onChange={() => selectCon(!con)}/>} label="Confidence"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "white"}} onChange={() => selectSel(!sel)}/>} label="Self-Discipline"/>
+                            <FormControlLabel control={<Checkbox sx={{color: "white"}} onChange={() => selectPro(!pro)}/>} label="Programming"/>
                             
                            
-                            <Button fullWidth style={{backgroundImage: "linear-gradient(#c555a1, #452465)", color: "orange"}} sx={{mb: 1, mt: 15}} onClick={handleCloseModal}>CANCEL</Button>
-                            <Button fullWidth style={{backgroundImage: "linear-gradient(#c555a1, #452465)", color: "orange"}} onClick={handleAddNewQuest}>CONFIRM</Button>
+                            <Button fullWidth style={{backgroundColor: "silver", color: "black"}} sx={{mb: 1, mt: 15}} onClick={handleCloseModal}>CANCEL</Button>
+                            <Button fullWidth style={{backgroundColor: "silver", color: "black"}} onClick={handleAddNewQuest}>CONFIRM</Button>
                         </Box>
                     </Box>
                     

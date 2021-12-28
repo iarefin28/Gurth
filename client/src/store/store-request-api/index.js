@@ -66,6 +66,10 @@ export const addNewWorkout = (date, musclesHit, exercisesArr, email) => {
     })
 }
 
+export const retrieveAllWorkouts = () => {
+    return workoutapi.get(`/allworkouts/`);
+}
+
 const apis = {
     createNewQuest,
     retrieveAllUserQuests,
@@ -73,7 +77,8 @@ const apis = {
     addSkill,
     updateSkills,
     retrieveAllUserSkills,
-    addNewWorkout
+    addNewWorkout,
+    retrieveAllWorkouts
 }
 
 export default apis
