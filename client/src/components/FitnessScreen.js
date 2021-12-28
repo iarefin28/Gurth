@@ -25,6 +25,7 @@ export default function FitnessScreen(){
 	};
 
     function handleShowAddWorkoutModal(){
+        handleClear()
         store.showAddWorkoutModal();
          //--- maybe need this line for dynamic loading..... 
     }
