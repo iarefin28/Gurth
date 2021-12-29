@@ -17,6 +17,7 @@ export default function FitnessScreen(){
     let [showingCalendar, setShowingCalendar] = useState(false)
     let [workoutPadding, setPadding] = useState("130px")
     let [title, newTitle] = useState("")
+    let [findAnotherByDate, setFindAnotherByDate] = useState(false);
     const [value, onChange] = useState(new Date()); 
     const {store} = useContext(GlobalStoreContext)
 
@@ -53,14 +54,25 @@ export default function FitnessScreen(){
 
     async function handleFindWorkoutByDate(){
         await store.retrieveAllWorkoutsByDate(value.toDateString())
-        setPadding("30px")
+        setPadding("130px")
+        setShowingCalendar(false);
         setShowingWorkouts(true);
+        setFindAnotherByDate(true);
     }
+
+    let findWorkoutByDate = "";
+    if(findAnotherByDate){
+        findWorkoutByDate =
+            <Box>
+                <Button onClick={handleFindWorkoutByDateButton} sx={{backgroundColor: "white", color: "black", ml: 5, maxHeight: "40px", mt: 14}}>Find Workouts On {value.toDateString()}</Button>
+            </Box>
+    }
+
 
     let workouts = ""
     if(showingWorkouts && store.WORKOUTS.length!=0){
         workouts =
-        <Paper square={true} style={{width: "100%", height: "100%", overflow: 'auto', backgroundColor: "black"}} elevation={0} sx={{pt: workoutPadding, display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <Paper square={true} style={{width: "100%", height: "100vh", overflow: 'auto', backgroundImage: "linear-gradient(147deg, #000000 0%, #2c3e50 74%)"}} elevation={0} sx={{pt: workoutPadding, display: "flex", flexDirection: "column", alignItems: "center"}}>
 			<Typography variant="h5" sx={{color: "white", fontFamily: "Lucida Console", pb: 3}}>{title}</Typography>
             {
 				store.WORKOUTS.map((pair) => (
@@ -76,14 +88,17 @@ export default function FitnessScreen(){
     }
     else if(showingWorkouts && store.WORKOUTS.length==0){
         workouts =
-            <Typography variant="h5" sx={{color: "white", fontFamily: "Lucida Console", pt: 3}}>No workouts were found on.</Typography>
+            <Typography variant="h5" sx={{color: "white", fontFamily: "Lucida Console", mt: "150px"}}>No workouts were found.</Typography>
     }
 
+    //calendar is in a box to prevent weird styling behavior
     let calendar = ""
     if(showingCalendar){
         calendar = 
-        <Paper square={true} style={{width: "100%", height: "100%", overflow: 'auto', backgroundColor: "black"}} elevation={0} sx={{pt: "130px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
-            <Calendar onChange={onChange} value = {value}/>
+        <Paper square={true} style={{width: "100%", height: "100vh", overflow: 'auto', backgroundImage: "linear-gradient(147deg, #000000 0%, #2c3e50 74%)"}} elevation={0} sx={{pt: "250px", display: "flex", flexDirection: "row", justifyContent: "center"}}>
+            <Box>
+                <Calendar onChange={onChange} value = {value}/>
+            </Box>
             <Button onClick={handleFindWorkoutByDate} sx={{backgroundColor: "white", color: "black", ml: 5, maxHeight: "40px", mt: 14}}>Find Workouts On {value.toDateString()}</Button>
         </Paper>
     }
@@ -96,12 +111,12 @@ export default function FitnessScreen(){
         		<AppBar
         			position="fixed"  
 					elevation={0}  
-        			sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, alignItems: "center", backgroundColor: "black"}}
+        			sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, alignItems: "center", backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)"}}
     			>
         			<Toolbar style={toolbarStyle}>
                         <Button onClick={handleClear}><Typography variant="h3" sx={{color: "white", fontFamily: "Lucida Console"}}>{func}</Typography></Button>
 					</Toolbar>
-                    <Box sx={{display: "flex", flexDirection: "row", backgroundColor: "black", width: "100%", justifyContent: "center"}}>
+                    <Box sx={{display: "flex", flexDirection: "row", backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)", width: "100%", justifyContent: "center"}}>
                         <Button 
                             onMouseOver={() => setFunc("Add a Workout")} 
                             onMouseLeave={() => setFunc("Your Fitness")} 

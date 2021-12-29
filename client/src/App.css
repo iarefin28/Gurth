@@ -5,7 +5,7 @@ body {
 
 #root {
   /*background-image: linear-gradient(to bottom, #c555a1, #452465); */
-  background-color: black;
+  background-image: linear-gradient(180deg, #000000 0%, #2c3e50 74%);
   font-family: "Lucida Console";
   position: absolute;
   width: 100%;

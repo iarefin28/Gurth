@@ -65,11 +65,11 @@ export default function QuestScreen() {
 					elevation={0}  
         			sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`}}
     			>
-        			<Toolbar style={toolbarStyle} sx={{backgroundImage: "linear-gradient(#4F4F4F, black)"}}>
+        			<Toolbar style={toolbarStyle} sx={{backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)"}}>
 						<Button onClick={handleAddQuest} sx={{backgroundColor: "purple", color: "orange"}}>Add a new quest</Button>
 					</Toolbar>
         		</AppBar>
-				<Paper square={true} style={{width: "100%", height: "100%", overflow: 'auto', backgroundColor: "black"}} elevation={0} sx={{pt: "72px", display: "flex", flexDirection: "row"}}>
+				<Paper square={true} style={{width: "100%", height: "100vh", overflow: 'auto', backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)"}} elevation={0} sx={{pt: "72px", display: "flex", flexDirection: "row"}}>
 					<Box sx={{display: "flex", flexDirection: "column"}}>
 						<Typography sx={{pl: 3}} variant="h3" style={{color: "white", fontFamily: "Lucida Console"}}>Your Quests</Typography>
 						{quests}
