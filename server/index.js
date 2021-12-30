@@ -25,6 +25,8 @@ const questRouter = require('./routes/quest-router')
 app.use('/api', questRouter)
 const workoutRouter = require('./routes/workout-router')
 app.use('/workoutapi', workoutRouter)
+const diaryRouter = require('./routes/diary-router')
+app.use('/diaryapi', diaryRouter)
 
 // INITIALIZE OUR DATABASE OBJECT
 const db = require('./db')

@@ -91,18 +91,21 @@ export default function AddWorkoutModal() {
                     <TextField 
                         fullWidth 
                         id="standard-basic" 
-                        label="Muscles Hit" 
+                        label="Muscles Hit..." 
                         variant="standard"
                         textColor="blue" 
                         onChange={handleMusclesHitNameChange}
+                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                         sx={{mb: 2}}
                     />
                     <TextField 
                         fullWidth 
                         id="standard-basic" 
-                        label="Add Exercise" 
+                        label="Add Exercise..." 
                         variant="standard"
-                        textColor="blue" 
+                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                         onKeyPress={handleAddEx}
                         sx={{mb: 2, fontFamily: "Lucida Console"}}
                     />

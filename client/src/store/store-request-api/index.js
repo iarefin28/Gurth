@@ -20,6 +20,10 @@ const workoutapi = axios.create({
     baseURL: 'http://localhost:4000/workoutapi',
 })
 
+const diaryapi = axios.create({
+    baseURL: 'http://localhost:4000/diaryapi',
+})
+
 //THESE ARE THE REQUESTS THAT PERTAIN TO THE QUEST SYSTEM
 export const createNewQuest = (questName, endDate, statsToUpdate, email) => {
     return api.post(`/quests/`, {
@@ -72,6 +76,14 @@ export const retrieveAllWorkouts = () => {
 
 export const retrieveAllWorkoutsByDate = (dateString) => workoutapi.get(`/datedworkouts/${dateString}`);
 
+export const addDiaryEntry = (entry, date) => {
+    return diaryapi.post(`/addentry/`, {
+        // SPECIFY THE PAYLOAD
+        entryContents: entry,
+        postDate: date
+    })
+}
+
 
 const apis = {
     createNewQuest,
@@ -82,7 +94,8 @@ const apis = {
     retrieveAllUserSkills,
     addNewWorkout,
     retrieveAllWorkouts,
-    retrieveAllWorkoutsByDate
+    retrieveAllWorkoutsByDate,
+    addDiaryEntry
 }
 
 export default apis

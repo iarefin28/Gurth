@@ -10,7 +10,8 @@ const UserSchema = new Schema(
         passwordHash: { type: String, required: true },
         quests: [{type: ObjectId, ref: 'Quest'}],
         skills: {type: [Object]},
-        workouts: [{type: ObjectId, ref: 'Workout'}]
+        workouts: [{type: ObjectId, ref: 'Workout'}],
+        diaryEntries: [{type: ObjectId, ref: 'DiaryEntries'}]
     },
     { timestamps: true },
 )

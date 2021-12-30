@@ -415,6 +415,10 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.handleRecordDiaryEntry = async function(entry, date){
+        let response = await api.addDiaryEntry(entry, date);
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

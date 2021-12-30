@@ -1,20 +1,44 @@
 import { CssBaseline, Box, AppBar, Toolbar, Button } from "@mui/material";
 import { Typography } from "@mui/material";
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import GlobalStoreContext from "../store";
 import { Dashboard } from ".";
 import { TextField } from "@mui/material";
 import { createMuiTheme, ThemeProvider } from "@mui/material";
 
-const theme = createMuiTheme({palette: {primary: {main: '#FFFFFF'}}})
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#FFFFFF'}
+        }
+    })
+
+const styles = theme => ({
+    multilineColor:{
+        color:'red'
+    }
+})
 
 const drawerWidth = 450;
 
 export default function FitnessScreen(){
     let [addJournalBox, setJournalBox] = useState(false);
+    let [entry, setEntry] = useState("")
+    const {store} = useContext(GlobalStoreContext)
 
     const toolbarStyle = {
 		minHeight: '72px'
 	};
+
+    function handleEntryChange(event){
+        setEntry(event.target.value)
+    }
+
+    function handleRecordEntry(event){
+        store.handleRecordDiaryEntry(entry, new Date());
+        setEntry("");
+        setJournalBox(false)
+    }
 
 
     let addAEntry = "";
@@ -34,10 +58,16 @@ export default function FitnessScreen(){
                             variant="outlined"
                             color="primary"
                             fullWidth
+                            inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                            InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                             multiline
                             rows="20"
+                            onChange={handleEntryChange}
                         />
                     </form>
+                </Box>
+                <Box sx={{backgroundColor: "white", width: "80%", minHeight: "50px", display: "flex", flexDirection: "row", justifyContent: "right"}}>
+                    <Button disabled={entry==""} onClick={handleRecordEntry} sx={{color: "#485461"}}>Record Entry</Button>
                 </Box>
             </ThemeProvider>
     }
