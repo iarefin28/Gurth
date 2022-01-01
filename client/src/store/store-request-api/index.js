@@ -76,13 +76,17 @@ export const retrieveAllWorkouts = () => {
 
 export const retrieveAllWorkoutsByDate = (dateString) => workoutapi.get(`/datedworkouts/${dateString}`);
 
-export const addDiaryEntry = (entry, date) => {
+export const addDiaryEntry = (entry, date, time) => {
     return diaryapi.post(`/addentry/`, {
         // SPECIFY THE PAYLOAD
         entryContents: entry,
-        postDate: date
+        postDate: date,
+        postTime: time
     })
 }
+
+export const getEntryByDate = (date) => diaryapi.get(`/entry/${date}`);
+
 
 
 const apis = {
@@ -95,7 +99,8 @@ const apis = {
     addNewWorkout,
     retrieveAllWorkouts,
     retrieveAllWorkoutsByDate,
-    addDiaryEntry
+    addDiaryEntry,
+    getEntryByDate
 }
 
 export default apis

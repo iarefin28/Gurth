@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const DiaryEntrySchema = new Schema(
     {
         entryContents: { type: String},
-        postDate: {type: Date},
+        postDate: {type: String},
+        postTime: {type: String}
     },
     { timestamps: true },
 )

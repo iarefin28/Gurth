@@ -146,6 +146,7 @@ export default function FitnessScreen(){
                             onMouseOver={() => setFunc("Find Workout By Muscles Trained")} 
                             onMouseLeave={() => setFunc("Your Fitness")} 
                             sx={{color: "white", mb: 1}}
+                            disabled={true}
                         >
                             Find Workout By Muscles Trained
                         </Button>
@@ -153,6 +154,7 @@ export default function FitnessScreen(){
                             onMouseOver={() => setFunc("TBA")} 
                             onMouseLeave={() => setFunc("Your Fitness")} 
                             sx={{color: "white", mb: 1}}
+                            disabled={true}
                         >
                             Mb implement smt calorie
                         </Button>

@@ -18,7 +18,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 500,
     height: 200,
-    backgroundImage: "linear-gradient(#d07a82, #dcae6d)",
+    backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -45,20 +45,20 @@ export default function DeleteQuestModal(props) {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundColor: "red", fontFamily: "Lucida Console", color: "purple"}}
+                        sx={{backgroundColor: "red", fontFamily: "Lucida Console", color: "white"}}
                     >
                         Abandon {store.selectedQuest[1]}?
                     </Typography>
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundColor: "red", fontFamily: "Lucida Console", color: "purple", mt: 1}}
+                        sx={{backgroundColor: "red", fontFamily: "Lucida Console", color: "white", mt: 1}}
                     >
                         PENALTY: -1 CONFIDENCE
                     </Typography>
                     <Box sx={{display: "flex", flexDirection: "row", pt: 2, justifyContent: "center"}}>
                         <Button sx={{backgroundColor: "green", color: "white", mr: 2}} onClick={handleContinueQuest}>Continue</Button>
-                        <Button sx={{backgroundColor: "red", color: "purple", mr: 2}} onClick={handleAbandonQuest}>Abandon</Button>
+                        <Button sx={{backgroundColor: "red", color: "white", mr: 2}} onClick={handleAbandonQuest}>Abandon</Button>
                     </Box>
                 </Box>
             </Box>

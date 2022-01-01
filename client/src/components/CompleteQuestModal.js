@@ -18,7 +18,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 500,
     height: 350,
-    backgroundImage: "linear-gradient(#d07a82, #dcae6d)",
+    backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -59,7 +59,7 @@ export default function CompleteQuestModal(props) {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundColor: "purple", fontFamily: "Lucida Console", color: "orange"}}
+                        sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", fontFamily: "Lucida Console", color: "white"}}
                     >
                         {store.selectedQuest[1]}
                     </Typography>
@@ -71,7 +71,7 @@ export default function CompleteQuestModal(props) {
                         Reward: {reward.substring(0, reward.length-2)}
                     </Typography>
                     <Box sx={{display: "flex", flexDirection: "row", pt: 2, justifyContent: "center"}}>
-                        <Button sx={{backgroundColor: "red", color: "purple", mr: 2}} onClick={handleCancelConfirmQuest}>INCOMPLETE</Button>
+                        <Button sx={{backgroundColor: "red", color: "black", mr: 2}} onClick={handleCancelConfirmQuest}>GO BACK</Button>
                         <Button sx={{backgroundColor: "green", color: "white"}} onClick={handleCompleteQuest}>ACCEPT REWARD</Button>
                     </Box>
                 </Box>
