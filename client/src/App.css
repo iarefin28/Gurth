@@ -4,7 +4,6 @@ body {
 }
 
 #root {
-  /*background-image: linear-gradient(to bottom, #c555a1, #452465); */
   background-image: linear-gradient(180deg, #000000 0%, #2c3e50 74%);
   font-family: "Lucida Console";
   position: absolute;
@@ -18,37 +17,6 @@ body {
   height: max-height;
   top: 0%;
   left: 0%;
-}
-
-#top5-banner {
-  position: absolute;
-  left: 0%;
-  top: 0%;
-  width: 100%;
-  height: 10%;
-  float: left;
-  background-image: linear-gradient(to bottom, #b8b808, #636723);
-  color: white;
-  font-size: 48pt;
-  border-color: black;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 10px;
-}
-
-#edit-toolbar {
-  background-color: transparent;
-  float: right;
-}
-
-.top5-button,
-.top5-button-disabled {
-  font-size: 36pt;
-  border-width: 0px;
-  float: left;
-  color: black;
-  cursor: pointer;
-  opacity: 100%;
 }
 
 .top5-button:hover {

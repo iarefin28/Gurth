@@ -84,7 +84,8 @@ export default function AddQuestModal() {
                         id="standard-basic" 
                         label="Quest Name" 
                         variant="standard"
-                        textColor="blue" 
+                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                         onChange={handleQuestNameChange}
                     />
                     <Box sx={{ display: "flex", flexDirection: "row"}}>

@@ -292,7 +292,7 @@ function GlobalStoreContextProvider(props) {
 
     store.createNewQuest = async function (questName, endDate, statToUpdate){
         let response = await api.createNewQuest(questName, endDate, statToUpdate, auth.user.email);
-        store.retrieveAllUserQuests(); //this code updates the quest view 
+        store.retrieveAllUserQuests(); 
     }
 
     store.addSkill = async function (skillName) {
@@ -368,8 +368,8 @@ function GlobalStoreContextProvider(props) {
 
     store.deleteQuestById = async function(id){
         let response = await api.deleteQuestById(id);
-        store.retrieveAllUserQuests();
         store.retrieveAllUserSkills();
+        store.retrieveAllUserQuests();
     }
 
     store.handleAddSkill = async function(){

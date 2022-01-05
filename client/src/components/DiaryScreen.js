@@ -81,6 +81,8 @@ export default function FitnessScreen(){
         store.loadDiaryEntryByDate(value.toDateString());
     }
 
+    console.log(store.entry)
+
     let entries = "";
     if(store.entry.length == 0 && !addJournalBox){
         entries = 
@@ -88,7 +90,7 @@ export default function FitnessScreen(){
     }
     else if(store.entry.length != 0 && !addJournalBox){
         entries = 
-            <Box sx={{display: "flex", justifyContent: "center"}}>
+            <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "95%"}}>
                 {
                     store.entry.map((pair) => (
                         <DiaryEntry

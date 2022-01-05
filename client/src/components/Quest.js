@@ -49,7 +49,7 @@ function Quest(props) {
     }
 
     return (
-        <Box sx={{display: "flex", flexDirection: "column"}}>
+        <Box sx={{width: "95%", pb: 1}}>
             <Box sx={{
                 backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
                 borderTop: 3,
@@ -59,14 +59,14 @@ function Quest(props) {
                 borderColor: 'silver',
                 borderRadius: 0,
                 marginTop: '10px',
-                width: 500,
+                width: "100%",
                 minHeight: 100,
-                mr: 3
             }}>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>{nameOfQuest}</Typography>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>{diffInDays}{daysLeft}</Typography>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white"}}>{stats}</Typography>
             </Box>
+            
             <Box sx={{
                 backgroundColor: "silver",
                 borderRight: 3,
@@ -74,9 +74,8 @@ function Quest(props) {
                 borderLeft: 3,
                 borderColor: 'silver',
                 borderRadius: 0,
-                width: 500,
+                width: "100%",
                 minHeight: 30,
-                mr: 3,
                 display: "flex",
                 alignItems: "right",
                 justifyContent: "right"

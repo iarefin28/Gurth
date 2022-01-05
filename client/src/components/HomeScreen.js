@@ -6,9 +6,9 @@ import GlobalStoreContext from '../store/index.js';
 export default function HomeScreen() {
     const {store} = useContext(GlobalStoreContext);
 
-    useEffect(() => {
-        store.retrieveAllUserQuests();
-    }, []);
+    //useEffect(() => {
+    //    store.retrieveAllUserQuests();
+    //}, []);
 
     return (
         <Dashboard></Dashboard>
