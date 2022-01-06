@@ -108,10 +108,8 @@ export default function QuestScreen() {
                 				</form>
             			</Box>
 					</Box>
-					
 				</Box>
         	</Box>
-			
 			<AddQuestModal/>
       	</Box>
   	);

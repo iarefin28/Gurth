@@ -8,11 +8,12 @@ import AddWorkoutModal from "./AddWorkoutModal.js"
 import Workout from "./Workout.js"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Fitness from "./Fitness.jpg"
 
 const drawerWidth = 450;
 
 export default function FitnessScreen(){
-    let [func, setFunc] = useState("Your Fitness")
+    let [func, setFunc] = useState("Church of Iron")
     let [showingWorkouts, setShowingWorkouts] = useState(false)
     let [showingCalendar, setShowingCalendar] = useState(false)
     let [workoutPadding, setPadding] = useState("130px")
@@ -107,7 +108,7 @@ export default function FitnessScreen(){
         <Box>
             <CssBaseline></CssBaseline>
             <Dashboard></Dashboard>
-            <Box sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Box sx={{ backgroundImage: 'url(' + Fitness + ')', backgroundSize: 'cover', backgroundPosition: 'center', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, display: "flex", flexDirection: "column", alignItems: "center", height: "100vh"}}>
         		<AppBar
         			position="fixed"  
 					elevation={0}  
@@ -119,7 +120,7 @@ export default function FitnessScreen(){
                     <Box sx={{display: "flex", flexDirection: "row", backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)", width: "100%", justifyContent: "center"}}>
                         <Button 
                             onMouseOver={() => setFunc("Add a Workout")} 
-                            onMouseLeave={() => setFunc("Your Fitness")} 
+                            onMouseLeave={() => setFunc("Church of Iron")} 
                             onClick={handleShowAddWorkoutModal}
                             sx={{color: "white", mb: 1}}
                         >
@@ -128,7 +129,7 @@ export default function FitnessScreen(){
                         
                         <Button 
                             onMouseOver={() => setFunc("View All Workouts")} 
-                            onMouseLeave={() => setFunc("Your Fitness")} 
+                            onMouseLeave={() => setFunc("Church of Iron")} 
                             onClick={handleLoadAllWorkouts}
                             sx={{color: "white", mb: 1}}
                         >
@@ -136,7 +137,7 @@ export default function FitnessScreen(){
                         </Button>
                         <Button 
                             onMouseOver={() => setFunc("Find Workout By Date")} 
-                            onMouseLeave={() => setFunc("Your Fitness")} 
+                            onMouseLeave={() => setFunc("Church of Iron")} 
                             onClick={handleFindWorkoutByDateButton}
                             sx={{color: "white", mb: 1}}
                         >
@@ -144,7 +145,7 @@ export default function FitnessScreen(){
                         </Button>
                         <Button 
                             onMouseOver={() => setFunc("Find Workout By Muscles Trained")} 
-                            onMouseLeave={() => setFunc("Your Fitness")} 
+                            onMouseLeave={() => setFunc("Church of Iron")} 
                             sx={{color: "white", mb: 1}}
                             disabled={true}
                         >
@@ -152,7 +153,7 @@ export default function FitnessScreen(){
                         </Button>
                         <Button 
                             onMouseOver={() => setFunc("TBA")} 
-                            onMouseLeave={() => setFunc("Your Fitness")} 
+                            onMouseLeave={() => setFunc("Church of Iron")} 
                             sx={{color: "white", mb: 1}}
                             disabled={true}
                         >
