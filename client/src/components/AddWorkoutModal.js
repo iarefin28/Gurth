@@ -3,7 +3,7 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Checkbox, TextField } from '@mui/material';
+import { Checkbox, TextField, IconButton, extractEventHandlers } from '@mui/material';
 import { Typography } from '@mui/material';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -11,6 +11,7 @@ import { FormControlLabel } from '@mui/material';
 import { FormGroup } from '@mui/material';
 import { Button } from '@mui/material';
 import { List } from '@mui/material';
+import UndoIcon from '@mui/icons-material/Undo';
 
 const style = {
     position: 'absolute',
@@ -31,6 +32,7 @@ export default function AddWorkoutModal() {
     const [value, onChange] = useState(new Date()); 
     const [musclesHit, musclesHitChange] = useState("");
     const [ex, setEx] = useState([]);
+    const [exVal, setExVal] = useState("");
     const { store } = useContext(GlobalStoreContext);
     
     function handleMusclesHitNameChange(event){
@@ -38,13 +40,12 @@ export default function AddWorkoutModal() {
     }
 
     function handleAddEx(event){
-        if(event.key === "Enter"){
-            setEx((prevEx) => [
-                ...prevEx,
-                event.target.value
-            ])
-        }
-
+        event.preventDefault();
+        setEx((prevEx) => [
+            ...prevEx,
+            exVal
+        ])
+        setExVal("")
     }
 
     function handleCloseModal(event){
@@ -52,6 +53,12 @@ export default function AddWorkoutModal() {
         musclesHitChange("");
         setEx([]);
         store.unshowAddWorkoutModal();
+    }
+
+    function handleDeleteExercise(event){
+        let newArray = ex;
+        newArray.pop();
+        setEx((prevEx) => [newArray])
     }
 
     function handleLogWorkout(event){
@@ -99,16 +106,25 @@ export default function AddWorkoutModal() {
                         InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                         sx={{mb: 2}}
                     />
-                    <TextField 
-                        fullWidth 
-                        id="standard-basic" 
-                        label="Add Exercise..." 
-                        variant="standard"
-                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        onKeyPress={handleAddEx}
-                        sx={{mb: 2, fontFamily: "Lucida Console"}}
-                    />
+                    <Box sx={{display: "flex", flexDirection: "row"}}>
+                        <form onSubmit={handleAddEx} style={{width: "100%"}}>
+                            <input
+                                placeholder="Add Exercise"
+                                onChange={(event) => setExVal(event.target.value)}
+                                value={exVal}
+                                style={{
+                                    outline: "none", 
+                                    border: "none", 
+                                    backgroundColor: "transparent", 
+                                    borderBottom: "1px solid #FFFFFF", 
+                                    width: "100%",
+                                    fontFamily: "Lucida Console",
+                                    color: "white"
+                                }}
+                            />
+                        </form>
+                        <IconButton onClick={handleDeleteExercise}><UndoIcon></UndoIcon></IconButton>
+                    </Box>
                     <Typography sx={{fontFamily: "Lucida Console", color: "white"}}>Date of Workout:</Typography>
                     <Calendar onChange={onChange} value = {value}/>
                 </Box>
