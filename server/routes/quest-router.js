@@ -10,6 +10,7 @@ router.delete('/quests/:id', auth.verify, questController.deleteQuestById)
 router.post('/skills', auth.verify, questController.addSkill)
 router.post('/updateskills', auth.verify, questController.updateSkills)
 router.get('/allskills', auth.verify, questController.retrieveAllUserSkills)
-
+router.post('/todo', auth.verify, questController.addToDoEvent)
+router.get('/todoevents', auth.verify, questController.retrieveAllUserEvents)
 
 module.exports = router

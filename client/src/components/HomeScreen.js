@@ -2,9 +2,13 @@ import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import Dashboard from './Dashboard.js'
 import GlobalStoreContext from '../store/index.js';
-import { Typography, Box, AppBar, Toolbar, CssBaseline, getNativeSelectUtilityClasses } from '@mui/material';
+import { Paper, Typography, Box, AppBar, Toolbar, CssBaseline, getNativeSelectUtilityClasses, TextField, IconButton } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Rain from './Rain.jpg'; import Snow from './Snow.jpg'; import Thunderstorm from './Thunderstorm.jpg'; import Clouds from './Clouds.jpg';  import ClearNightSky from './ClearNightSky.jpg'
 import Ocean from './Ocean.jpg'; import Waves from './Waves.jpg'; import MoreWaves from './MoreWaves.jpg'; import EpicWaves from './EpicWaves.jpg'
+import Snow2 from './Snow2.jpg';
+
+
 
 const drawerWidth = 450;
 
@@ -20,8 +24,9 @@ const weatherapi = {
 export default function HomeScreen() {
     const {store} = useContext(GlobalStoreContext);
     const [query, setQuery] = useState("New York");
-    const [weather, setWeather] = useState({})
-    const [quote, setQuote] = useState({})
+    const [weather, setWeather] = useState({});
+    const [quote, setQuote] = useState({});
+    const [newEvent, setNewEvent] = useState("");
 
     useEffect(() => {
         search()
@@ -43,13 +48,20 @@ export default function HomeScreen() {
             return response.json();
         })
         .then(function(data) {
-            console.log(data[getRandomInt(data.length)]);
+            //console.log(data[getRandomInt(data.length)]);
             setQuote(data[getRandomInt(data.length)])
         });
     }
 
     function getRandomInt(max){
         return Math.floor(Math.random() * max)
+    }
+
+    function handleAddEvent(event){
+        event.preventDefault();
+        //console.log(newEvent)
+        store.addToDoEvent(newEvent);
+        setNewEvent("");
     }
 
     
@@ -66,7 +78,7 @@ export default function HomeScreen() {
             weatherPic = <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: 'url(' + Clouds + ')', backgroundSize: 'cover', backgroundPosition: 'top', width: "100%", minHeight: "50%"}}>{weatherContents}</Box>
         }
         else if(weather.weather[0].main === "Snow"){
-            weatherPic = <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: 'url(' + Snow + ')', backgroundSize: 'cover', backgroundPosition: 'center', width: "100%", minHeight: "50%"}}>{weatherContents}</Box>
+            weatherPic = <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: 'url(' + Snow2 + ')', backgroundSize: 'cover', backgroundPosition: 'bottom', width: "100%", minHeight: "50%"}}>{weatherContents}</Box>
         }
         else if(weather.weather[0].main === "Rain"){
             weatherPic = <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: 'url(' + Rain + ')', backgroundSize: 'cover', backgroundPosition: 'bottom', width: "100%", minHeight: "50%"}}>{weatherContents}</Box>
@@ -105,18 +117,32 @@ export default function HomeScreen() {
         		</AppBar>
 
                 <Box sx={{display: "flex", flexDirection: "row"}}>
-                    <Box sx={{mt: "72px", backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", width: "50%", height: `calc(100vh - 72px)`}}>
-
+                    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: "72px", backgroundImage: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
+                        <Typography variant="h4" sx={{color: "white", fontFamily: "Lucida Console"}}>To-Do</Typography>
+                        <Box sx={{backgroundColor: "white", width: "100%", display: "flex", justifyContent: "center"}}>
+                            <form onSubmit={handleAddEvent} style={{width: "90%"}}>
+                                <input
+                                    onChange={(event) => setNewEvent(event.target.value)}
+                                    placeholder="Add an event for today"
+                                    value={newEvent}
+                                    style={{width: "100%", outline: "none", border: "none", fontFamily: "Lucida Console"}}
+                                />
+                            </form>
+                            <IconButton disabled={newEvent===""} sx={{color: "#485461"}} onClick={handleAddEvent}><AddCircleIcon></AddCircleIcon></IconButton>
+                        </Box>
+                        
                     </Box>
-                    <Box sx={{display: "flex", flexDirection: "column", mt: "72px", backgroundColor: "blue", width: "50%", height: `calc(100vh - 72px)`}}>
-                        <Box sx={{display: "flex", flexDirection: "column", backgroundColor: "white", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 1, borderLeft: 1, borderBottom: 1, borderColor: "white"}}>
+                    <Box sx={{display: "flex", flexDirection: "column", mt: "72px", backgroundColor: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
+                        <Box sx={{display: "flex", flexDirection: "column", backgroundColor: "white", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 0, borderLeft: 1, borderBottom: 1, borderColor: "white"}}>
                             {weatherPic}
                             <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", backgroundImage: 'url(' + MoreWaves + ')', backgroundSize: 'cover', backgroundPosition: 'top', width: "100%", minHeight: "50%"}}>
                                 <Typography align="center" sx={{backgroundColor: "rgb(0, 0, 0, 0.2)", borderRadius: "16px", color: "white", fontSize: "20px", fontWeight: "900", color: "white", fontFamily: "Lucida Console"}}>{quote.text} - {quote.author}</Typography>
                             </Box>
                         </Box>
-                        <Box sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 1, borderLeft: 1, borderBottom: 0, borderColor: "white"}}>
-                            
+                        <Box sx={{backgroundImage: "transparent", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 0, borderLeft: 1, borderBottom: 0, borderColor: "white"}}>
+                        <Box sx={{width: "100%", height: "100%", backgroundColor: "white", borderLeft: 1, borderColor: 'gray', display: "flex", flexDirection: "column"}}>
+                                
+                        </Box>
                         </Box>
                     </Box>
                 </Box>

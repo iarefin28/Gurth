@@ -87,6 +87,16 @@ export const addDiaryEntry = (entry, date, time) => {
 
 export const getEntryByDate = (date) => diaryapi.get(`/entry/${date}`);
 
+export const addToDoEvent = (nameOfEvent) => {
+    return api.post(`/todo/`, {
+        nameOfEvent: nameOfEvent
+    })
+}
+
+export const retrieveAllUserEvents = () => {
+    return api.get(`/todoevents/`);
+}
+
 
 
 const apis = {
@@ -100,7 +110,9 @@ const apis = {
     retrieveAllWorkouts,
     retrieveAllWorkoutsByDate,
     addDiaryEntry,
-    getEntryByDate
+    getEntryByDate,
+    addToDoEvent,
+    retrieveAllUserEvents
 }
 
 export default apis

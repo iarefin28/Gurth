@@ -212,11 +212,55 @@ updateSkills = (req, res) => {
 }
 
 
+
+addToDoEvent = (req, res) => {
+    const body = req.body;
+    console.log(body);
+    if (!body) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    console.log("creating event: " + JSON.stringify(body));
+    if (!JSON.stringify(body)) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    // REMEMBER THAT OUR AUTH MIDDLEWARE GAVE THE userId TO THE req
+    console.log("event created for " + req.userId);
+    User.findOne({ _id: req.userId }, (err, user) => {
+        console.log("event found: " + JSON.stringify(user));
+        user.todo.push(body.nameOfEvent);
+        user
+            .save()
+            .then(() => {
+                        return res.status(201).json({})
+                    }).catch(error => {
+                        return res.status(400).json({
+                            errorMessage: 'Event Not Created!'
+                        })
+                    })
+            });
+}
+
+retrieveAllUserEvents = async (req, res) => {
+    await User.findOne({ _id: req.userId }, (err, user) => {
+        let todo = user.todo;
+        return res.status(200).json({ success: true, todo: todo })
+    }).catch(err => console.log(err))
+}
+
+
 module.exports = {
     createNewQuest,
     retrieveAllUserQuests,
     deleteQuestById,
     addSkill,
     updateSkills,
-    retrieveAllUserSkills
+    retrieveAllUserSkills,
+    addToDoEvent,
+    retrieveAllUserEvents
 }

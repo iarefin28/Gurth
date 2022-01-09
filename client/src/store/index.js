@@ -30,7 +30,8 @@ export const GlobalStoreActionType = {
     UNSHOW_ADD_WORKOUT_MODAL: "UNSHOW_ADD_WORKOUT_MODAL",
     LOAD_ALL_USER_WORKOUTS: "LOAD_ALL_USER_WORKOUTS",
     LOAD_ENTRY_BY_DATE: "LOAD_ENTRY_BY_DATE",
-    CLEAR_ENTRY: "CLEAR_ENTRY"
+    CLEAR_ENTRY: "CLEAR_ENTRY",
+    LOAD_ALL_USER_EVENTS: "LOAD_ALL_USER_EVENTS"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -47,7 +48,8 @@ function GlobalStoreContextProvider(props) {
         addSkillModalVisible: false,
         completeQuestModalVisible: false,
         addWorkoutModalVisible: false,
-        entry: []
+        entry: [],
+        todo: []
     });
     const history = useHistory();
 
@@ -74,7 +76,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.CANCEL_NEW_QUEST: {
@@ -88,7 +91,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_QUESTS: {
@@ -102,7 +106,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_SKILLS: {
@@ -116,7 +121,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.SHOW_DELETE_QUEST_MODAL: {
@@ -130,7 +136,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL: {
@@ -144,7 +151,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.SHOW_COMPLETE_QUEST_MODAL: {
@@ -158,7 +166,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: true,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.UNSHOW_COMPLETE_QUEST_MODAL: {
@@ -172,7 +181,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.SHOW_ADD_SKILL_MODAL: {
@@ -186,7 +196,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: true,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.UNSHOW_ADD_SKILL_MODAL: {
@@ -200,7 +211,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.SHOW_ADD_WORKOUT_MODAL: {
@@ -213,7 +225,8 @@ function GlobalStoreContextProvider(props) {
                     selectedQuest: store.selectedQuest,
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
-                    addWorkoutModalVisible: true
+                    addWorkoutModalVisible: true,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL: {
@@ -227,7 +240,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS: {
@@ -241,7 +255,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: store.entry
+                    entry: store.entry,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.LOAD_ENTRY_BY_DATE: {
@@ -255,7 +270,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: payload
+                    entry: payload,
+                    todo: store.todo
                 });
             }
             case GlobalStoreActionType.CLEAR_ENTRY: {
@@ -269,7 +285,23 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
-                    entry: payload
+                    entry: payload,
+                    todo: store.todo
+                });
+            }
+            case GlobalStoreActionType.LOAD_ALL_USER_EVENTS: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    //SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false,
+                    entry: store.entry,
+                    todo: payload
                 });
             }
             default:
@@ -478,6 +510,24 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.CLEAR_ENTRY,
             payload: []
         })
+    }
+
+    store.addToDoEvent = async function(nameOfEvent){
+        let response = await api.addToDoEvent(nameOfEvent)
+    }
+
+    store.retrieveAllUserEvents = async function(){
+        let response = await api.retrieveAllUserEvents();
+        if(response.status === 200){
+            let todo = response.data.todo;
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_EVENTS,
+                payload: todo
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE SKILLS");
+        }
     }
 
     return (

@@ -11,7 +11,8 @@ const UserSchema = new Schema(
         quests: [{type: ObjectId, ref: 'Quest'}],
         skills: {type: [Object]},
         workouts: [{type: ObjectId, ref: 'Workout'}],
-        diaryEntries: [{type: ObjectId, ref: 'DiaryEntries'}]
+        diaryEntries: [{type: ObjectId, ref: 'DiaryEntries'}],
+        todo: {type: [String]}
     },
     { timestamps: true },
 )

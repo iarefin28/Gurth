@@ -87,7 +87,8 @@ export default function Dashboard() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)", 
+            backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
+            boxShadow: "0px 0px 10px rgb(0 0 0)"
           },
         }}
         variant="permanent"

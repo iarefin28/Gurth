@@ -9,6 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import DiaryEntry from "./DiaryEntry";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Meditation from './Meditation.jpg'
 
 const theme = createMuiTheme({
     palette: {
@@ -84,11 +85,11 @@ export default function FitnessScreen(){
     console.log(store.entry)
 
     let entries = "";
-    if(store.entry.length == 0 && !addJournalBox){
+    if(store.entry != null && store.entry.length == 0 && !addJournalBox){
         entries = 
             <Typography variant="h5" sx={{color: "white", fontFamily: "Lucida Console", mt: "100px"}}>No entries to show.</Typography>
     }
-    else if(store.entry.length != 0 && !addJournalBox){
+    else if(store.entry != null && store.entry.length != 0 && !addJournalBox){
         entries = 
             <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "95%"}}>
                 {
@@ -149,7 +150,7 @@ export default function FitnessScreen(){
     let viewEntriesScreen = "";
     if(entriess){
         viewEntriesScreen =
-            <Paper sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", overflow: 'auto', width: "100%", height: "100vh", borderRadius: 0, display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Paper className="slide-in-entries" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", overflow: 'auto', width: "100%", height: "100vh", borderRadius: 0, display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <Box>
                     {calendar}
                 </Box>
@@ -162,7 +163,7 @@ export default function FitnessScreen(){
         <Box>
             <CssBaseline></CssBaseline>
             <Dashboard></Dashboard>
-            <Box sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Box sx={{backgroundImage: 'url(' + Meditation + ')', backgroundSize: 'cover', backgroundPosition: 'center', width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh"}}>
         		<AppBar
         			position="fixed"  
 					elevation={10}  
