@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import api from './store-request-api'
+import api, { retrieveAllUserEvents } from './store-request-api'
 import AuthContext from '../auth'
 /*
     This is our global data store. Note that it uses the Flux design pattern,
@@ -293,7 +293,7 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     ADD_QUEST_ACTIVE: false,
                     QUESTS: store.QUESTS,
-                    //SKILLS: store.SKILLS,
+                    SKILLS: store.SKILLS,
                     WORKOUTS: store.WORKOUTS,
                     deleteQuestModalVisible: false,
                     selectedQuest: store.selectedQuest,
@@ -514,6 +514,7 @@ function GlobalStoreContextProvider(props) {
 
     store.addToDoEvent = async function(nameOfEvent){
         let response = await api.addToDoEvent(nameOfEvent)
+        store.retrieveAllUserEvents();
     }
 
     store.retrieveAllUserEvents = async function(){

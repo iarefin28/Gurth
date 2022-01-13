@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 import DiaryEntry from "./DiaryEntry";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Meditation from './Meditation.jpg'
+import Meditation from './Images/Meditation.jpg'
 
 const theme = createMuiTheme({
     palette: {

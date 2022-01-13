@@ -16,10 +16,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { createMuiTheme, ThemeProvider } from '@mui/material';
 import { Modal } from '@mui/material';
-import IncorrectCredentialsModal from "./IncorrectCredentialsModal"
 
 
-import Trance from './Trance.jpg'
+
+import Trance from './Images/Trance.jpg'
 
 
 const theme = createMuiTheme({

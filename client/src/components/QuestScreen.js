@@ -28,6 +28,8 @@ export default function QuestScreen() {
         store.retrieveAllUserQuests();
     }, []);
 
+	useEffect( () => {store.retrieveAllUserSkills()}, [store.QUESTS])
+
 	const toolbarStyle = {
 		minHeight: '72px'
 	};

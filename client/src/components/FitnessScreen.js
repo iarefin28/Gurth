@@ -8,7 +8,7 @@ import AddWorkoutModal from "./AddWorkoutModal.js"
 import Workout from "./Workout.js"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Fitness from "./Fitness.jpg"
+import Fitness from "./Images/Fitness.jpg"
 
 const drawerWidth = 450;
 

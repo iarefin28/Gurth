@@ -4,10 +4,10 @@ import Dashboard from './Dashboard.js'
 import GlobalStoreContext from '../store/index.js';
 import { Paper, Typography, Box, AppBar, Toolbar, CssBaseline, getNativeSelectUtilityClasses, TextField, IconButton } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Rain from './Rain.jpg'; import Snow from './Snow.jpg'; import Thunderstorm from './Thunderstorm.jpg'; import Clouds from './Clouds.jpg';  import ClearNightSky from './ClearNightSky.jpg'
-import Ocean from './Ocean.jpg'; import Waves from './Waves.jpg'; import MoreWaves from './MoreWaves.jpg'; import EpicWaves from './EpicWaves.jpg'
-import Snow2 from './Snow2.jpg';
-
+import Rain from './Images/Rain.jpg'; import Snow from './Images/Snow.jpg'; import Thunderstorm from './Images/Thunderstorm.jpg'; import Clouds from './Images/Clouds.jpg';  import ClearNightSky from './Images/ClearNightSky.jpg'
+import Ocean from './Images/Ocean.jpg'; import Waves from './Images/Waves.jpg'; import MoreWaves from './Images/MoreWaves.jpg'; import EpicWaves from './Images/EpicWaves.jpg'
+import Snow2 from './Images/Snow2.jpg';
+import ToDoList from './ToDoList.js';
 
 
 const drawerWidth = 450;
@@ -26,12 +26,21 @@ export default function HomeScreen() {
     const [query, setQuery] = useState("New York");
     const [weather, setWeather] = useState({});
     const [quote, setQuote] = useState({});
-    const [newEvent, setNewEvent] = useState("");
 
     useEffect(() => {
         search()
         quotes()
     }, []);
+
+    useEffect(() => {
+        const getLoginData = async () => {
+            //const events = await store.retrieveAllUserEvents();
+            const skills = await store.retrieveAllUserSkills();
+            const events = await store.retrieveAllUserEvents();
+        }
+        getLoginData();
+    }, [])
+
 
     const search = () => {
         fetch(`${weatherapi.base}weather?q=${query}&units=imperial&APPID=${weatherapi.key}`)
@@ -57,18 +66,15 @@ export default function HomeScreen() {
         return Math.floor(Math.random() * max)
     }
 
-    function handleAddEvent(event){
-        event.preventDefault();
-        //console.log(newEvent)
-        store.addToDoEvent(newEvent);
-        setNewEvent("");
-    }
 
     
     let weatherContents = "";
     let weatherPic = "";
+    let sunriseSunset = "";
     if(weather.main != null){
         console.log(weather.weather[0].main)
+        sunriseSunset = 
+
         weatherContents = 
             <Box sx={{backgroundColor: "rgb(0, 0, 0, 0.2)", borderRadius: "16px", color: "white", fontSize: "50px", fontWeight: "900", textShadow: "3px 6px rgba(50, 50, 70, 0.5)"}}>
                 {weather.main.temp}°F
@@ -118,19 +124,7 @@ export default function HomeScreen() {
 
                 <Box sx={{display: "flex", flexDirection: "row"}}>
                     <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: "72px", backgroundImage: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
-                        <Typography variant="h4" sx={{color: "white", fontFamily: "Lucida Console"}}>To-Do</Typography>
-                        <Box sx={{backgroundColor: "white", width: "100%", display: "flex", justifyContent: "center"}}>
-                            <form onSubmit={handleAddEvent} style={{width: "90%"}}>
-                                <input
-                                    onChange={(event) => setNewEvent(event.target.value)}
-                                    placeholder="Add an event for today"
-                                    value={newEvent}
-                                    style={{width: "100%", outline: "none", border: "none", fontFamily: "Lucida Console"}}
-                                />
-                            </form>
-                            <IconButton disabled={newEvent===""} sx={{color: "#485461"}} onClick={handleAddEvent}><AddCircleIcon></AddCircleIcon></IconButton>
-                        </Box>
-                        
+                        <ToDoList></ToDoList>
                     </Box>
                     <Box sx={{display: "flex", flexDirection: "column", mt: "72px", backgroundColor: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
                         <Box sx={{display: "flex", flexDirection: "column", backgroundColor: "white", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 0, borderLeft: 1, borderBottom: 1, borderColor: "white"}}>
@@ -141,7 +135,7 @@ export default function HomeScreen() {
                         </Box>
                         <Box sx={{backgroundImage: "transparent", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 0, borderLeft: 1, borderBottom: 0, borderColor: "white"}}>
                         <Box sx={{width: "100%", height: "100%", backgroundColor: "white", borderLeft: 1, borderColor: 'gray', display: "flex", flexDirection: "column"}}>
-                                
+                            
                         </Box>
                         </Box>
                     </Box>
