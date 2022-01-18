@@ -265,11 +265,15 @@ deleteToDoEvent = async (req, res) => {
     User.findOne({ _id: req.userId }, (err, user) => {
         let newEvents = [];
         for(let i=0; i < user.todo.length; i++){
-            if(req.params.nameOfEvent === user.todo[i]){}
+            if(req.params.nameOfEvent === user.todo[i]){
+
+            }
             else{
+                console.log(req.params.nameOfEvent + " " + user.todo[i])
                 newEvents.push(user.todo[i]);
             }
         }
+        console.log(newEvents)
         user.todo = newEvents;
         user
             .save()

@@ -51,7 +51,7 @@ export default function ToDoList() {
         event.preventDefault();
         //console.log(newEvent)
 		if(newEvent!==""){
-			store.addToDoEvent(newEvent);
+			store.addToDoEvent(newEvent.trim());
 		}
         setNewEvent("");
     }
