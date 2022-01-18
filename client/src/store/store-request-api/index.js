@@ -25,10 +25,11 @@ const diaryapi = axios.create({
 })
 
 //THESE ARE THE REQUESTS THAT PERTAIN TO THE QUEST SYSTEM
-export const createNewQuest = (questName, endDate, statsToUpdate, email) => {
+export const createNewQuest = (questName, questDescription, endDate, statsToUpdate, email) => {
     return api.post(`/quests/`, {
         // SPECIFY THE PAYLOAD
         nameOfQuest: questName,
+        descriptionOfQuest: questDescription,
         endDate: endDate,
         increase_stat: statsToUpdate,
         ownerEmail: email

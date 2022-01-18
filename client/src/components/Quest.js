@@ -18,7 +18,7 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 */
 function Quest(props) {
     const { store } = useContext(GlobalStoreContext);
-    const { nameOfQuest, endDate, increase_stat, questId} = props;
+    const { nameOfQuest, descriptionOfQuest, endDate, increase_stat, questId} = props;
  
     const todaysDate = new Date()
     const diff = endDate - todaysDate.getTime() 
@@ -48,6 +48,11 @@ function Quest(props) {
         store.showCompleteQuestModal(questId, nameOfQuest, increase_stat);
     }
 
+    let questDescription = <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>Quest Description: None</Typography>
+    if(descriptionOfQuest){
+        questDescription = <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>Quest Description: {descriptionOfQuest}</Typography>
+    }
+
     return (
         <Box sx={{width: "95%", pb: 1}}>
             <Box sx={{
@@ -63,6 +68,7 @@ function Quest(props) {
                 minHeight: 100,
             }}>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>{nameOfQuest}</Typography>
+                {questDescription}
                 <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>{diffInDays}{daysLeft}</Typography>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white"}}>{stats}</Typography>
             </Box>

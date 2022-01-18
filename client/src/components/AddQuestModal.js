@@ -17,7 +17,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 700,
-    height: 550,
+    height: 600,
     backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
     border: '2px solid #000',
     boxShadow: 24,
@@ -27,6 +27,7 @@ const style = {
 export default function AddQuestModal() {
     const [value, onChange] = useState(new Date()); //quest end date 
     const [questName, questNameChange] = useState("");
+    const [questDescription, questDescriptionChange] = useState("");
     const [fit, selectFit] = useState(false);
     const [intro, selectIntro] = useState(false);
     const [con, selectCon] = useState(false);
@@ -42,6 +43,10 @@ export default function AddQuestModal() {
         questNameChange(event.target.value);
     }
 
+    function handleQuestDescriptionChange(event){
+        questDescriptionChange(event.target.value)
+    }
+
     function handleAddNewQuest(event) {
         const statsToUpdate = [];
         if(fit) statsToUpdate.push("Fitness");
@@ -52,7 +57,7 @@ export default function AddQuestModal() {
 
         const valueTime = value.getTime();
         
-        store.createNewQuest(questName, valueTime, statsToUpdate);
+        store.createNewQuest(questName, questDescription, valueTime, statsToUpdate);
         handleCloseModal();
         //store.retrieveAllUserQuests();
     }
@@ -86,7 +91,16 @@ export default function AddQuestModal() {
                         variant="standard"
                         inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
                         InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        onChange={handleQuestNameChange}
+                        onBlur={handleQuestNameChange}
+                    />
+                    <TextField 
+                        fullWidth 
+                        id="standard-basic" 
+                        label="Quest Description" 
+                        variant="standard"
+                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
+                        onBlur={handleQuestDescriptionChange}
                     />
                     <Box sx={{ display: "flex", flexDirection: "row"}}>
                         <Box>

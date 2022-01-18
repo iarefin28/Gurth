@@ -118,11 +118,11 @@ export default function Dashboard() {
         <IconButton sx={{color: "white"}}  onClick={handleLoadQuests}>
             <AssignmentIcon></AssignmentIcon>
         </IconButton>
-        <IconButton sx={{color: "white"}}  disabled="true">
-            <BackpackIcon></BackpackIcon>
-        </IconButton>
         <IconButton sx={{color: "white"}}  onClick={handleLoadFitness}>
             <FitnessCenterIcon></FitnessCenterIcon>
+        </IconButton>
+        <IconButton sx={{color: "white"}}  onClick={handleLoadDiary}>
+            <MenuBookIcon></MenuBookIcon>
         </IconButton>
         <IconButton sx={{color: "white"}}  disabled="true">
             <WorkIcon></WorkIcon>
@@ -130,8 +130,8 @@ export default function Dashboard() {
         <IconButton sx={{color: "white"}}  disabled="true">
             <CheckIcon></CheckIcon>
         </IconButton>
-        <IconButton sx={{color: "white"}}  onClick={handleLoadDiary}>
-            <MenuBookIcon></MenuBookIcon>
+        <IconButton sx={{color: "white"}}  disabled="true">
+            <BackpackIcon></BackpackIcon>
         </IconButton>
       </Drawer>
     </Box>

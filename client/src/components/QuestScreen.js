@@ -64,6 +64,7 @@ export default function QuestScreen() {
 					<Quest
 						key={pair._id}
 						nameOfQuest={pair.name}
+						descriptionOfQuest={pair.description}
 						endDate={pair.endDate}
 						increase_stat={pair.stats}
 						questId={pair._id}
@@ -79,46 +80,20 @@ export default function QuestScreen() {
 			<Dashboard></Dashboard>
         	<Box sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`}}>
         		<AppBar
-					className="slide-in-quest-bar"
         			position="fixed"  
 					elevation={0}  
         			sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px`, alignItems: "center", backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)"}}
     			>
         			<Toolbar style={toolbarStyle}>
-						<Typography variant="h3" sx={{color: "white", fontFamily: "Lucida Console"}}>YOUR QUESTS</Typography>
+						<Typography variant="h3" sx={{color: "white", fontFamily: "Lucida Console"}}>CURRENT QUESTS</Typography>
 					</Toolbar>
         		</AppBar>
 				<Box sx={{display: "flex", flexDirection: "row"}}>
-					<Box className="slide-in-current-quests" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", pt: "72px", overflow: "auto", width: "50%", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center"}}>
-						<Typography variant="h4" sx={{color: "white", fontFamily: "Lucida Console"}}>Current Quests</Typography>
+					<Box className="fade-in" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", pt: "72px", overflow: "auto", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center"}}>
 						<IconButton sx={{color: "white"}} onClick={handleAddQuest}><AddCircleIcon></AddCircleIcon></IconButton>
 						{quests}
 						<DeleteQuestModal/>
 						<CompleteQuestModal/>
-					</Box>
-					<Box className="slide-in-notes" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", pt: "72px", overflow: "auto", width: "50%", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center"}}>
-						<Typography variant="h4" sx={{color: "white", fontFamily: "Lucida Console"}}>Notes</Typography>
-						<IconButton size="large" sx={{color: "white"}}><SaveAltIcon></SaveAltIcon></IconButton>
-						<Box sx={{width: "95%", minHeight: "50px", backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)", 
-            				borderTop: 2,
-            				borderRight: 2,
-            				borderBottom: 2,
-            				borderLeft: 2,
-                			borderColor: 'gray',
-                			borderRadius: 3}}>
-                    			<form noValidate autoComplete="off">
-                    				<TextField
-                        				label={notes}
-                        				variant="outlined"
-                        				color="primary"
-                            			fullWidth
-                            			inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                            			InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        				multiline
-										rows="20"
-                    				/>
-                				</form>
-            			</Box>
 					</Box>
 				</Box>
         	</Box>

@@ -95,16 +95,19 @@ export default function AddWorkoutModal() {
                     >
                         THE SYSTEM WILL NOW ADD A WORKOUT.
                     </Typography>
-                    <TextField 
-                        fullWidth 
-                        id="standard-basic" 
-                        label="Muscles Hit..." 
-                        variant="standard"
-                        textColor="blue" 
+                    <input
+                        placeholder="Muscles Hit"
                         onChange={handleMusclesHitNameChange}
-                        inputProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        InputLabelProps={{style: {color: "white", fontFamily: "Lucida Console"}}}
-                        sx={{mb: 2}}
+                        style={{
+                            outline: "none", 
+                            border: "none", 
+                            backgroundColor: "transparent", 
+                            borderBottom: "1px solid #FFFFFF", 
+                            width: "100%",
+                            fontFamily: "Lucida Console",
+                            color: "white",
+                            marginBottom: 5
+                        }}
                     />
                     <Box sx={{display: "flex", flexDirection: "row"}}>
                         <form onSubmit={handleAddEx} style={{width: "100%"}}>

@@ -337,8 +337,8 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
-    store.createNewQuest = async function (questName, endDate, statToUpdate){
-        let response = await api.createNewQuest(questName, endDate, statToUpdate, auth.user.email);
+    store.createNewQuest = async function (questName, questDescription, endDate, statToUpdate){
+        let response = await api.createNewQuest(questName, questDescription, endDate, statToUpdate, auth.user.email);
         store.retrieveAllUserQuests(); 
     }
 

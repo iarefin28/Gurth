@@ -68,6 +68,7 @@ retrieveAllUserQuests = async (req, res) => {
                         let pair = {
                             _id: list._id,
                             name: list.nameOfQuest,
+                            description: list.descriptionOfQuest,
                             endDate: list.endDate,
                             stats: list.increase_stat,
                             ownerEmail: list.ownerEmail
@@ -263,6 +264,8 @@ deleteToDoEvent = async (req, res) => {
     console.log("delete " + req.params.nameOfEvent)
     
     User.findOne({ _id: req.userId }, (err, user) => {
+        
+
         let newEvents = [];
         for(let i=0; i < user.todo.length; i++){
             if(req.params.nameOfEvent === user.todo[i]){

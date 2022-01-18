@@ -150,7 +150,7 @@ export default function FitnessScreen(){
     let viewEntriesScreen = "";
     if(entriess){
         viewEntriesScreen =
-            <Paper className="slide-in-entries" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", overflow: 'auto', width: "100%", height: "100vh", borderRadius: 0, display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <Paper className="fade-in" sx={{backgroundImage: "linear-gradient(180deg, #000000 0%, #2c3e50 74%)", overflow: 'auto', width: "100%", height: "100vh", borderRadius: 0, display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <Box>
                     {calendar}
                 </Box>
