@@ -10,6 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import { FormControlLabel } from '@mui/material';
 import { FormGroup } from '@mui/material';
 import { Button } from '@mui/material';
+import { deleteQuestById } from '../store/store-request-api';
 
 const style = {
     position: 'absolute',
@@ -27,9 +28,25 @@ export default function CompleteQuestModal(props) {
     const {store} = useContext(GlobalStoreContext);
     
     function handleCompleteQuest(event){
-        store.updateSkills(store.selectedQuest[2])
-        store.deleteQuestById(store.selectedQuest[0]);
-        store.unshowCompleteQuestModal();
+        // const completeQuest = async () => {
+        //     const skills = await store.updateSkills(store.selectedQuest[2]);
+        //     const del = await store.deleteQuestById(store.selectedQuest[0]);
+        //     const unshow = await store.unshowCompleteQuestModal();
+        // }
+        // completeQuest();
+        // console.log(store.SKILLS)
+        const updateSkills = async () => {
+            const skills = await store.updateSkills(store.selectedQuest[2]);
+            console.log(store.SKILLS)
+        }
+        const deleteQuest = async() => {
+            const del = await store.deleteQuestById(store.selectedQuest[0]);
+        }
+        const unshow = async() => {
+            const unshow = await store.unshowCompleteQuestModal();
+        }
+        console.log(store.SKILLS)
+        updateSkills().then()
     }
 
     function handleCancelConfirmQuest(event){

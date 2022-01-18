@@ -26,9 +26,19 @@ export default function QuestScreen() {
 
 	useEffect(() => {
         store.retrieveAllUserQuests();
-    }, []);
+	 	//store.retrieveAllUserSkills();
+     }, []);
 
-	useEffect( () => {store.retrieveAllUserSkills()}, [store.QUESTS])
+	//useEffect( () => {store.retrieveAllUserSkills()}, [store.QUESTS])
+
+
+	//useEffect(() => {
+        //const getQuestSkillData = async () => {
+			//const events = await store.retrieveAllUserQuests();
+            //const skills = await store.retrieveAllUserSkills();
+        //}
+        //getQuestSkillData();
+    //}, [])
 
 	const toolbarStyle = {
 		minHeight: '72px'

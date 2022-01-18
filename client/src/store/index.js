@@ -62,7 +62,7 @@ function GlobalStoreContextProvider(props) {
     // HERE'S THE DATA STORE'S REDUCER, IT MUST
     // HANDLE EVERY TYPE OF STATE CHANGE
     const storeReducer = (action) => {
-        const { type, payload } = action;
+        const { type, payload, payload2 } = action;
         switch (type) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.ADD_NEW_QUEST: {
@@ -304,6 +304,21 @@ function GlobalStoreContextProvider(props) {
                     todo: payload
                 });
             }
+            case GlobalStoreActionType.LOAD_HOMESCREEN_DATA: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    SKILLS: payload2,
+                    WORKOUTS: store.WORKOUTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false,
+                    entry: store.entry,
+                    todo: payload
+                })
+            }
             default:
                 return store;
         }
@@ -400,7 +415,7 @@ function GlobalStoreContextProvider(props) {
 
     store.deleteQuestById = async function(id){
         let response = await api.deleteQuestById(id);
-        store.retrieveAllUserSkills();
+        //store.retrieveAllUserSkills();
         store.retrieveAllUserQuests();
     }
 
@@ -424,6 +439,7 @@ function GlobalStoreContextProvider(props) {
         let response = await api.updateSkills(stats);
         if(response.status === 200){
             let skillsArray = response.data.userSkills;
+            console.log(skillsArray)
             storeReducer({
                 type: GlobalStoreActionType.LOAD_ALL_USER_SKILLS,
                 payload: skillsArray
@@ -517,6 +533,11 @@ function GlobalStoreContextProvider(props) {
         store.retrieveAllUserEvents();
     }
 
+    store.deleteToDoEvent = async function(nameOfEvent){
+        let response = await api.deleteToDoEvent(nameOfEvent)
+        store.retrieveAllUserEvents();
+    }
+
     store.retrieveAllUserEvents = async function(){
         let response = await api.retrieveAllUserEvents();
         if(response.status === 200){
@@ -524,6 +545,23 @@ function GlobalStoreContextProvider(props) {
             storeReducer({
                 type: GlobalStoreActionType.LOAD_ALL_USER_EVENTS,
                 payload: todo
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE SKILLS");
+        }
+    }
+
+    store.retrieveHomescreenData = async function(){
+        let response1 = await api.retrieveAllUserEvents();
+        let response2 = await api.retrieveAllUserSkills();
+        if(response1.status === 200 && response2.status === 200){
+            let todo = response1.data.todo;
+            let userSkills = response2.data.userSkills;
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_HOMESCREEN_DATA,
+                payload: todo,
+                payload2: userSkills
             })
         }
         else{

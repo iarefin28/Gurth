@@ -233,7 +233,20 @@ addToDoEvent = (req, res) => {
     console.log("event created for " + req.userId);
     User.findOne({ _id: req.userId }, (err, user) => {
         console.log("event found: " + JSON.stringify(user));
-        user.todo.push(body.nameOfEvent);
+        let eventExists = false; 
+        for(let i = 0; i < user.todo.length; i++){
+            if(user.todo[i] === body.nameOfEvent){
+                eventExists = true;
+            }
+        }
+        if(!eventExists){
+            user.todo.push(body.nameOfEvent);
+        }
+        else{
+            return res.status(400).json({
+                errorMessage: 'Event with the same name already exists',
+            })
+        }
         user
             .save()
             .then(() => {
@@ -245,6 +258,32 @@ addToDoEvent = (req, res) => {
                     })
             });
 }
+
+deleteToDoEvent = async (req, res) => {
+    console.log("delete " + req.params.nameOfEvent)
+    
+    User.findOne({ _id: req.userId }, (err, user) => {
+        let newEvents = [];
+        for(let i=0; i < user.todo.length; i++){
+            if(req.params.nameOfEvent === user.todo[i]){}
+            else{
+                newEvents.push(user.todo[i]);
+            }
+        }
+        user.todo = newEvents;
+        user
+            .save()
+            .then(() => {
+                        return res.status(201).json({})
+                    }).catch(error => {
+                        return res.status(400).json({
+                            errorMessage: 'Not deleted!'
+                        })
+                    })
+            });
+}
+
+
 
 retrieveAllUserEvents = async (req, res) => {
     await User.findOne({ _id: req.userId }, (err, user) => {
@@ -262,5 +301,6 @@ module.exports = {
     updateSkills,
     retrieveAllUserSkills,
     addToDoEvent,
+    deleteToDoEvent,
     retrieveAllUserEvents
 }

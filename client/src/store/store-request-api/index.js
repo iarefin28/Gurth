@@ -93,6 +93,8 @@ export const addToDoEvent = (nameOfEvent) => {
     })
 }
 
+export const deleteToDoEvent = (nameOfEvent) => api.delete(`/todoDelete/${nameOfEvent}`)
+
 export const retrieveAllUserEvents = () => {
     return api.get(`/todoevents/`);
 }
@@ -112,6 +114,7 @@ const apis = {
     addDiaryEntry,
     getEntryByDate,
     addToDoEvent,
+    deleteToDoEvent, 
     retrieveAllUserEvents
 }
 

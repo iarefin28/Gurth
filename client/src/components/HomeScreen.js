@@ -7,6 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Rain from './Images/Rain.jpg'; import Snow from './Images/Snow.jpg'; import Thunderstorm from './Images/Thunderstorm.jpg'; import Clouds from './Images/Clouds.jpg';  import ClearNightSky from './Images/ClearNightSky.jpg'
 import Ocean from './Images/Ocean.jpg'; import Waves from './Images/Waves.jpg'; import MoreWaves from './Images/MoreWaves.jpg'; import EpicWaves from './Images/EpicWaves.jpg'
 import Snow2 from './Images/Snow2.jpg';
+import HomeScreen1 from './Images/HomeScreen1.jpg';
 import ToDoList from './ToDoList.js';
 
 
@@ -34,9 +35,7 @@ export default function HomeScreen() {
 
     useEffect(() => {
         const getLoginData = async () => {
-            //const events = await store.retrieveAllUserEvents();
-            const skills = await store.retrieveAllUserSkills();
-            const events = await store.retrieveAllUserEvents();
+            await store.retrieveHomescreenData();
         }
         getLoginData();
     }, [])
@@ -46,7 +45,7 @@ export default function HomeScreen() {
         fetch(`${weatherapi.base}weather?q=${query}&units=imperial&APPID=${weatherapi.key}`)
             .then(res => res.json())
             .then(result => {
-                console.log(result)
+                //console.log(result)
                 setWeather(result);
             })
     }
@@ -72,7 +71,7 @@ export default function HomeScreen() {
     let weatherPic = "";
     let sunriseSunset = "";
     if(weather.main != null){
-        console.log(weather.weather[0].main)
+        //console.log(weather.weather[0].main)
         sunriseSunset = 
 
         weatherContents = 
@@ -123,7 +122,7 @@ export default function HomeScreen() {
         		</AppBar>
 
                 <Box sx={{display: "flex", flexDirection: "row"}}>
-                    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: "72px", backgroundImage: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
+                    <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", mt: "72px", backgroundImage: "transparent", width: "50%", height: `calc(100vh - 72px)`, overflow: "auto"}}>
                         <ToDoList></ToDoList>
                     </Box>
                     <Box sx={{display: "flex", flexDirection: "column", mt: "72px", backgroundColor: "transparent", width: "50%", height: `calc(100vh - 72px)`}}>
@@ -134,7 +133,7 @@ export default function HomeScreen() {
                             </Box>
                         </Box>
                         <Box sx={{backgroundImage: "transparent", width: "100%", minHeight: "50%", borderTop: 0, borderRight: 0, borderLeft: 1, borderBottom: 0, borderColor: "white"}}>
-                        <Box sx={{width: "100%", height: "100%", backgroundColor: "white", borderLeft: 1, borderColor: 'gray', display: "flex", flexDirection: "column"}}>
+                        <Box sx={{width: "100%", height: "100%", backgroundImage: 'url(' + HomeScreen1 + ')', backgroundSize: 'cover', backgroundPosition: 'center', borderLeft: 1, borderColor: 'gray', display: "flex", flexDirection: "column"}}>
                             
                         </Box>
                         </Box>
