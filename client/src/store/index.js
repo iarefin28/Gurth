@@ -31,7 +31,9 @@ export const GlobalStoreActionType = {
     LOAD_ALL_USER_WORKOUTS: "LOAD_ALL_USER_WORKOUTS",
     LOAD_ENTRY_BY_DATE: "LOAD_ENTRY_BY_DATE",
     CLEAR_ENTRY: "CLEAR_ENTRY",
-    LOAD_ALL_USER_EVENTS: "LOAD_ALL_USER_EVENTS"
+    LOAD_ALL_USER_EVENTS: "LOAD_ALL_USER_EVENTS",
+    LOAD_HOMESCREEN_DATA: "LOAD_HOMESCREEN_DATA",
+    COMPLETE_QUEST: "COMPLETE_QUEST"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -319,6 +321,21 @@ function GlobalStoreContextProvider(props) {
                     todo: payload
                 })
             }
+            case GlobalStoreActionType.COMPLETE_QUEST: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: payload2,
+                    SKILLS: payload,
+                    WORKOUTS: store.WORKOUTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false,
+                    entry: store.entry,
+                    todo: store.todo
+                })
+            }
             default:
                 return store;
         }
@@ -413,11 +430,7 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
-    store.deleteQuestById = async function(id){
-        let response = await api.deleteQuestById(id);
-        //store.retrieveAllUserSkills();
-        store.retrieveAllUserQuests();
-    }
+    
 
     store.handleAddSkill = async function(){
         //let response = await api.handleAddSkill()
@@ -435,20 +448,7 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
-    store.updateSkills = async function(stats){
-        let response = await api.updateSkills(stats);
-        if(response.status === 200){
-            let skillsArray = response.data.userSkills;
-            console.log(skillsArray)
-            storeReducer({
-                type: GlobalStoreActionType.LOAD_ALL_USER_SKILLS,
-                payload: skillsArray
-            })
-        }
-        else{
-            console.log("API FAILED TO GET THE SKILLS");
-        }
-    }
+
 
     store.showAddWorkoutModal = async function(){
         storeReducer({type: GlobalStoreActionType.SHOW_ADD_WORKOUT_MODAL})
@@ -567,6 +567,43 @@ function GlobalStoreContextProvider(props) {
         else{
             console.log("API FAILED TO GET THE SKILLS");
         }
+    }
+    store.updateSkills = async function(stats){
+        let response = await api.updateSkills(stats);
+        if(response.status === 200){
+            let skillsArray = response.data.userSkills;
+            console.log(skillsArray)
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_SKILLS,
+                payload: skillsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE SKILLS");
+        }
+    }
+    store.completeQuest = async function(stats, id){
+        let response1 = await api.updateSkills(stats)
+        let response2 = await api.deleteQuestById(id)
+        let response3 = await api.retrieveAllUserQuests();
+        if(response1.status === 200 && response2.status === 200 && response3.status === 200){
+            let userSkills = response1.data.userSkills;
+            let questsArray = response3.data.userQuests;
+            storeReducer({
+                type: GlobalStoreActionType.COMPLETE_QUEST,
+                payload: userSkills,
+                payload2: questsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE SKILLS");
+        }
+    }
+    
+    store.deleteQuestById = async function(id){
+        let response = await api.deleteQuestById(id);
+        //store.retrieveAllUserSkills();
+        store.retrieveAllUserQuests();
     }
 
     return (

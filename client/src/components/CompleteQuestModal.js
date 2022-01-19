@@ -28,25 +28,11 @@ export default function CompleteQuestModal(props) {
     const {store} = useContext(GlobalStoreContext);
     
     function handleCompleteQuest(event){
-        // const completeQuest = async () => {
-        //     const skills = await store.updateSkills(store.selectedQuest[2]);
-        //     const del = await store.deleteQuestById(store.selectedQuest[0]);
-        //     const unshow = await store.unshowCompleteQuestModal();
-        // }
-        // completeQuest();
-        // console.log(store.SKILLS)
-        const updateSkills = async () => {
-            const skills = await store.updateSkills(store.selectedQuest[2]);
-            console.log(store.SKILLS)
-        }
-        const deleteQuest = async() => {
-            const del = await store.deleteQuestById(store.selectedQuest[0]);
-        }
-        const unshow = async() => {
-            const unshow = await store.unshowCompleteQuestModal();
-        }
-        console.log(store.SKILLS)
-        updateSkills().then()
+         const completeQuest = async () => {
+             await store.completeQuest(store.selectedQuest[2], store.selectedQuest[0]);
+             //const unshow = await store.unshowCompleteQuestModal();
+         }
+         completeQuest();
     }
 
     function handleCancelConfirmQuest(event){

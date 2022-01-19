@@ -38,7 +38,7 @@ export default function Dashboard() {
 	 * So setting the store.QUESTS to the dependency value for the useEffect does the job. Although, 
 	 * not sure why putting store.SKILLS causes an infinite loop. 
 	 */
-	  //useEffect( () => {store.retrieveAllUserSkills()}, []) 
+	  useEffect( () => {store.retrieveAllUserSkills()}, []) 
 
     function handleLoadQuests(event) {
         history.push("/quests");
