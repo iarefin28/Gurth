@@ -125,10 +125,10 @@ export default function Dashboard() {
             <MenuBookIcon></MenuBookIcon>
         </IconButton>
         <IconButton sx={{color: "white"}}  disabled="true">
-            <WorkIcon></WorkIcon>
+            <CheckIcon></CheckIcon>
         </IconButton>
         <IconButton sx={{color: "white"}}  disabled="true">
-            <CheckIcon></CheckIcon>
+            <WorkIcon></WorkIcon>
         </IconButton>
         <IconButton sx={{color: "white"}}  disabled="true">
             <BackpackIcon></BackpackIcon>

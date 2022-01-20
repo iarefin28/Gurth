@@ -101,6 +101,17 @@ export const retrieveAllUserEvents = () => {
 }
 
 
+//Achievments 
+export const addAchievement = (name, skills, date, completionNote) => {
+    return api.post(`/achievements/`, {
+        // SPECIFY THE PAYLOAD
+        nameOfAchievement: name,
+        skillsUpdated: skills,
+        dateOfCompletion: date,
+        completionNote: completionNote
+    })
+}
+
 
 const apis = {
     createNewQuest,
@@ -116,7 +127,8 @@ const apis = {
     getEntryByDate,
     addToDoEvent,
     deleteToDoEvent, 
-    retrieveAllUserEvents
+    retrieveAllUserEvents,
+    addAchievement
 }
 
 export default apis

@@ -12,7 +12,8 @@ const UserSchema = new Schema(
         skills: {type: [Object]},
         workouts: [{type: ObjectId, ref: 'Workout'}],
         diaryEntries: [{type: ObjectId, ref: 'DiaryEntries'}],
-        todo: {type: [String]}
+        todo: {type: [String]},
+        achievement: [{type: ObjectId, ref: 'Achievement'}],
     },
     { timestamps: true },
 )

@@ -606,6 +606,10 @@ function GlobalStoreContextProvider(props) {
         store.retrieveAllUserQuests();
     }
 
+    store.addAchievement = async function(name, skills, date, completionNote){
+        let response = await api.addAchievement(name, skills, date, completionNote)
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

@@ -26,16 +26,24 @@ const style = {
 };
 export default function CompleteQuestModal(props) {     
     const {store} = useContext(GlobalStoreContext);
+    const [completionNote, setCompletionNote] = useState("");
     
     function handleCompleteQuest(event){
+        const addAchievement = async () => {
+            await store.addAchievement(store.selectedQuest[1], store.selectedQuest[2], new Date(), completionNote);
+        }
          const completeQuest = async () => {
              await store.completeQuest(store.selectedQuest[2], store.selectedQuest[0]);
              //const unshow = await store.unshowCompleteQuestModal();
          }
+         addAchievement();
          completeQuest();
+
     }
 
+
     function handleCancelConfirmQuest(event){
+        setCompletionNote("");
         store.unshowCompleteQuestModal();
     }
 
@@ -51,7 +59,7 @@ export default function CompleteQuestModal(props) {
             open={store.completeQuestModalVisible == true}
         >
             <Box sx={style}>
-                <Box>
+                <Box sx={{display: "flex", flexDirection: "column"}}>
                     <Typography 
                         variant="h5" 
                         align="center" 
@@ -69,10 +77,24 @@ export default function CompleteQuestModal(props) {
                     <Typography 
                         variant="h5" 
                         align="center" 
-                        sx={{backgroundColor: "green", fontFamily: "Lucida Console", color: "white"}}
+                        sx={{backgroundColor: "green", fontFamily: "Lucida Console", color: "white", mb: 2}}
                     >
                         Reward: {reward.substring(0, reward.length-2)}
                     </Typography>
+                    <input
+                        placeholder="Write a quick note for future you to cringe"
+                        onChange={(event) => setCompletionNote(event.target.value)}
+                        style={{
+                            outline: "none", 
+                            border: "none", 
+                            backgroundColor: "transparent", 
+                            borderBottom: "1px solid #FFFFFF", 
+                            width: "100%",
+                            fontFamily: "Lucida Console",
+                            color: "white",
+                            marginBottom: 5
+                        }}
+                    />
                     <Box sx={{display: "flex", flexDirection: "row", pt: 2, justifyContent: "center"}}>
                         <Button sx={{backgroundColor: "red", color: "black", mr: 2}} onClick={handleCancelConfirmQuest}>GO BACK</Button>
                         <Button sx={{backgroundColor: "green", color: "white"}} onClick={handleCompleteQuest}>ACCEPT REWARD</Button>

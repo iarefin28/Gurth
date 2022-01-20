@@ -13,5 +13,6 @@ router.get('/allskills', auth.verify, questController.retrieveAllUserSkills)
 router.post('/todo', auth.verify, questController.addToDoEvent)
 router.delete('/todoDelete/:nameOfEvent', auth.verify, questController.deleteToDoEvent)
 router.get('/todoevents', auth.verify, questController.retrieveAllUserEvents)
+router.post('/achievements', auth.verify, questController.addAchievement)
 
 module.exports = router

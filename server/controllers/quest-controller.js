@@ -1,4 +1,5 @@
 const Quest = require('../models/quest-model');
+const Achievement = require('../models/achievement-model');
 const User = require('../models/user-model');
 
 createNewQuest = (req, res) => {
@@ -299,6 +300,45 @@ retrieveAllUserEvents = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+addAchievement = (req, res) => {
+    const body = req.body;
+    console.log(body);
+    if (!body) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    const achievement = new Achievement(body);
+    if (!achievement) {
+        return res.status(400).json({
+            errorMessage: 'Improperly formatted request',
+        })
+    }
+
+    // REMEMBER THAT OUR AUTH MIDDLEWARE GAVE THE userId TO THE req
+    User.findOne({ _id: req.userId }, (err, user) => {
+        console.log("user found: " + JSON.stringify(user));
+        user.achievement.push(achievement._id);
+        user
+            .save()
+            .then(() => {
+                achievement
+                    .save()
+                    .then(() => {
+                        return res.status(201).json({
+                            achievments: achievement
+                        })
+                    })
+                    .catch(error => {
+                        return res.status(400).json({
+                            errorMessage: 'Achievement Not Created!'
+                        })
+                    })
+            });
+    })
+}
+
 
 module.exports = {
     createNewQuest,
@@ -309,5 +349,6 @@ module.exports = {
     retrieveAllUserSkills,
     addToDoEvent,
     deleteToDoEvent,
-    retrieveAllUserEvents
+    retrieveAllUserEvents,
+    addAchievement
 }
