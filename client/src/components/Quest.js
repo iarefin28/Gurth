@@ -54,15 +54,15 @@ function Quest(props) {
     }
 
     return (
-        <Box sx={{width: "95%", pb: 1}}>
+        <Box sx={{width: "95%", pb: 1, display: "flex", flexDirection: "column"}}>
             <Box sx={{
-                backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
+                backgroundColor: "rgb(0, 50, 50, 0.7)",
                 borderTop: 3,
                 borderRight: 3,
-                borderBottom: 3,
                 borderLeft: 3,
+                borderBottom: 3,
                 borderColor: 'silver',
-                borderRadius: 0,
+                borderRadius: 3,
                 marginTop: '10px',
                 width: "100%",
                 minHeight: 100,
@@ -71,24 +71,25 @@ function Quest(props) {
                 {questDescription}
                 <Typography sx={{fontFamily: "Lucida Console", color: "white", pb: 1}}>{diffInDays}{daysLeft}</Typography>
                 <Typography sx={{fontFamily: "Lucida Console", color: "white"}}>{stats}</Typography>
+
+                <Box sx={{
+                    backgroundColor: "rgb(192, 192, 192, 0.7)",
+                    borderRight: 0,
+                    borderBottom: 0,
+                    borderLeft: 0,
+                    borderColor: 'silver',
+                    borderRadius: 2,
+                    width: "100%",
+                    minHeight: 30,
+                    display: "flex",
+                    alignItems: "right",
+                    justifyContent: "right"
+                }}>
+                    <IconButton onClick={handleDeleteQuest}><IndeterminateCheckBoxIcon></IndeterminateCheckBoxIcon></IconButton>
+                    <IconButton onClick={handleCompleteQuest}><CheckBoxIcon></CheckBoxIcon></IconButton>
+                </Box>
             </Box>
             
-            <Box sx={{
-                backgroundColor: "silver",
-                borderRight: 3,
-                borderBottom: 3,
-                borderLeft: 3,
-                borderColor: 'silver',
-                borderRadius: 0,
-                width: "100%",
-                minHeight: 30,
-                display: "flex",
-                alignItems: "right",
-                justifyContent: "right"
-            }}>
-                <IconButton onClick={handleDeleteQuest}><IndeterminateCheckBoxIcon></IndeterminateCheckBoxIcon></IconButton>
-                <IconButton onClick={handleCompleteQuest}><CheckBoxIcon></CheckBoxIcon></IconButton>
-            </Box>
         </Box>
     );
 }

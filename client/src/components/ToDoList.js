@@ -1,42 +1,13 @@
 import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import DateTime from './DateTime.js'
-import PlayerStatus from './PlayerStatus.js';
-import PlayerSkills from './PlayerSkills.js';
-import AuthContext from '../auth/index.js';
+import { Typography, Box, IconButton } from "@mui/material";
 import { GlobalStoreContext } from '../store'
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-
-import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import BackpackIcon from '@mui/icons-material/Backpack';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import WorkIcon from '@mui/icons-material/Work';
-import CheckIcon from '@mui/icons-material/Check';
-import LockIcon from '@mui/icons-material/Lock';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import { useHistory } from 'react-router-dom';
-import { borderBottom } from '@mui/system';
-
 import ToDoEvent from './ToDoEvent.js'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 const drawerWidth = 450;
 
 export default function ToDoList() {
-	const history = useHistory();
-	const {auth} = useContext(AuthContext);
   	const {store} = useContext(GlobalStoreContext);
 	const [newEvent, setNewEvent] = useState("");
 
@@ -75,14 +46,14 @@ export default function ToDoList() {
   	return (
     	<Box sx={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
 			<Typography variant="h4" sx={{color: "white", fontFamily: "Lucida Console"}}>To-Do</Typography>
-            <Box sx={{backgroundColor: "white", width: "100%", display: "flex", justifyContent: "center"}}>
+            <Box sx={{backgroundColor: "white", width: "100%", display: "flex", justifyContent: "center", backgroundColor: "#121212"}}>
                 <form onSubmit={handleAddEvent} style={{width: "90%"}}>
                     <input
                         onChange={(event) => setNewEvent(event.target.value)}
                         placeholder="Add an event"
-						color="red"
+						color=""
                         value={newEvent}
-                        style={{width: "100%", outline: "none", border: "none", fontFamily: "Lucida Console"}}
+                        style={{backgroundColor: "#121212", width: "100%", color: "white", outline: "none", border: "none", fontFamily: "Lucida Console"}}
                     />
                 </form>
                 <IconButton disabled={newEvent===""} sx={{color: "#485461"}} onClick={handleAddEvent}><AddCircleIcon></AddCircleIcon></IconButton>

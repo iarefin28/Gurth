@@ -3,11 +3,8 @@ import { GlobalStoreContext } from '../store'
 import Box from '@mui/material/Box';
 
 import EditIcon from '@mui/icons-material/Edit';
-import IconButton from '@mui/material/IconButton';
-import ListItem from '@mui/material/ListItem';
-import TextField from '@mui/material/TextField';
-import { Typography } from "@mui/material";
-import { Button, Paper } from "@mui/material";
+
+import { Button, Paper, Typography, TextField, ListItem, IconButton } from "@mui/material";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 

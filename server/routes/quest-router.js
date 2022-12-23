@@ -14,5 +14,6 @@ router.post('/todo', auth.verify, questController.addToDoEvent)
 router.delete('/todoDelete/:nameOfEvent', auth.verify, questController.deleteToDoEvent)
 router.get('/todoevents', auth.verify, questController.retrieveAllUserEvents)
 router.post('/achievements', auth.verify, questController.addAchievement)
+router.get('/allachievements', auth.verify, questController.retrieveAllUserAchievements)
 
 module.exports = router

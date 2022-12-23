@@ -2,7 +2,7 @@ import { React, useState, useEffect, useContext } from 'react'
 import Box from '@mui/material/Box';
 import { Typography, Button } from '@mui/material';
 import GlobalStoreContext from '../store';
-import AddSkillModal from './AddSkillModal.js';
+import AddSkillModal from './Modals/AddSkillModal.js';
 import List from '@mui/material/List';
 /** 
  */

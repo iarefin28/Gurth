@@ -8,23 +8,14 @@ import {
     HomeWrapper,
     LoginScreen,
     RegisterScreen,
-    QuestScreen,
     HomeScreen,
+    QuestScreen,
     FitnessScreen,
-    DiaryScreen
+    DiaryScreen,
+    AchievementScreen
 } from './components'
 
-/*
-    This is our application's top-level component.
-    
-    @author McKilla Gorilla
-*/
-/*
-  This is the entry-point for our application. Notice that we
-  inject our store into all the components in our application.
-  
-  @author McKilla Gorilla
-*/
+
 const App = () => {
     return (
         <BrowserRouter>
@@ -38,6 +29,7 @@ const App = () => {
                         <Route path="/fitness/" exact component={FitnessScreen} />
                         <Route path="/homescreen/" exact component={HomeScreen} />
                         <Route path="/diary/" exact component={DiaryScreen} />
+                        <Route path="/achievements/" exact component={AchievementScreen} />
                     </Switch>
                 </GlobalStoreContextProvider>
             </AuthContextProvider>

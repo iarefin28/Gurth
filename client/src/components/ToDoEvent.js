@@ -28,10 +28,10 @@ function ToDoEvent(props) {
     }
 
     return (
-        <Box sx={{width: "100%", backgroundImage: "linear-gradient(270deg, #000000 0%, #2c3e50 74%)", mt: 2, pl: 2, height: "8vh",
+        <Box sx={{width: "100%", backgroundImage: "linear-gradient(270deg, #000000 0%, #2c3e50 74%)", mt: 2, pl: 2, minHeight: "8vh",
 					borderBottom: 1,
 					borderTop: 1,
-					borderColor: "white",
+					borderColor: "black",
 					justifyContent: "space-between",
 					alignItems: "center",
 					display: "flex"

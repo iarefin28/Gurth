@@ -1,20 +1,21 @@
-import HomeScreen from './HomeScreen'
-import HomeWrapper from './HomeWrapper'
-import LoginScreen from './LoginScreen'
-import RegisterScreen from './RegisterScreen'
+import HomeScreen from './Portals/HomeScreen'
+import HomeWrapper from './Portals/HomeWrapper'
+import LoginScreen from './Portals/LoginScreen'
+import RegisterScreen from './Portals/RegisterScreen'
+import AchievementScreen from './Portals/AchievementScreen'
 import DateTime from './DateTime'
 import PlayerStatus from './PlayerStatus'
 import PlayerSkills from './PlayerSkills'
 import Dashboard from './Dashboard'
-import QuestScreen from './QuestScreen'
-import AddQuestModal from './AddQuestModal'
+import QuestScreen from './Portals/QuestScreen'
+import AddQuestModal from './Modals/AddQuestModal'
 import Quest from './Quest'
-import DeleteQuestModal from './DeleteQuestModal'
-import AddSkillModal from './AddSkillModal'
-import CompleteQuestModal from './CompleteQuestModal'
-import FitnessScreen from './FitnessScreen.js'
-import DiaryScreen from './DiaryScreen'
-import AddWorkoutModal from './AddWorkoutModal'
+import DeleteQuestModal from './Modals/DeleteQuestModal'
+import AddSkillModal from './Modals/AddSkillModal'
+import CompleteQuestModal from './Modals/CompleteQuestModal'
+import FitnessScreen from './Portals/FitnessScreen.js'
+import DiaryScreen from './Portals/DiaryScreen'
+import AddWorkoutModal from './Modals/AddWorkoutModal'
 import Workout from './Workout'
 /*
     This serves as a module so that we can import
@@ -35,6 +36,7 @@ export {
     AddQuestModal,
     DeleteQuestModal,
     AddSkillModal,
+    AchievementScreen,
     CompleteQuestModal,
     Quest,
     FitnessScreen,

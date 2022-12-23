@@ -166,30 +166,25 @@ retrieveAllUserSkills = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-
-//this backend code just updates the skills by one level. 
-//maybe later will implement functionalities so different quests can add different amount of stat points to a skill
-//and then with this new idea maybe sort the quests on the quest home page by the total amount of skill points - to represent some kind of priority system
 updateSkills = (req, res) => {
     const body = req.body;
-    console.log(body.skillsToUpdate);
+    console.log("Skills to Update:" + body.skillsToUpdate);
     if (!body) {
         return res.status(400).json({
             errorMessage: 'Improperly formatted request',
         })
     }
 
-    console.log("updating following skills: " + JSON.stringify(body));
+    console.log("Updating following skills: " + JSON.stringify(body));
     if (!JSON.stringify(body)) {
         return res.status(400).json({
             errorMessage: 'Improperly formatted request',
         })
     }
 
-    // REMEMBER THAT OUR AUTH MIDDLEWARE GAVE THE userId TO THE req
     console.log("skill updating for " + req.userId);
     User.findOne({ _id: req.userId }, (err, user) => {
-        console.log("user found: " + JSON.stringify(user));
+        console.log("user found: " + user.email);
         let newSkills = [];
         (user.skills).forEach(element => {
             if(body.skillsToUpdate.includes(element[0])){
@@ -199,14 +194,14 @@ updateSkills = (req, res) => {
                 newSkills.push([element[0], element[1]]);
             }
         })
-        console.log("updated skills" + newSkills);
+        console.log("old skills: " + user.skills)
+        console.log("updated skills: " + newSkills);
         user.skills = newSkills;
         console.log("updating the user's skill" + user.skills)
         user.save().then(() => {
-                //console.log("skills" +user.skills[0].skillTuple)
                 return res.status(200).json({ success: true, userSkills: user.skills })
             }).catch(error => {
-                return res.status(400).json({
+                return res.status(450).json({
                     errorMessage: 'Skills not updated!'
                 })
             })
@@ -340,6 +335,45 @@ addAchievement = (req, res) => {
 }
 
 
+retrieveAllUserAchievements = async (req, res) => {
+    await User.findOne({ _id: req.userId }, (err, user) => {
+        async function asyncFindList(email) {
+            console.log("Getting Achievements")
+            await Achievement.find({ ownerEmail: email }, (err, achievements) => {
+                if (err) {
+                    return res.status(400).json({ success: false, error: err })
+                }
+                if (!achievements) {
+                    console.log("!top5Lists.length");
+                    return res
+                        .status(404)
+                        .json({ success: false, error: 'Achievement not found' })
+                }
+                else {
+                    // PUT ALL THE LISTS INTO ID, NAME PAIRS
+                    let pairs = [];
+                    for (let key in achievements) {
+                        console.log(achievements[key])
+                        let list = achievements[key];
+                        let pair = {
+                            _id: list._id,
+                            nameOfAchievement: list.nameOfAchievement,
+                            dateOfCompletion: list.dateOfCompletion,
+                            completionNote: list.completionNote,
+                            skillsUpdated: list.skillsUpdated,
+                            ownerEmail: list.ownerEmail
+                        };
+                        pairs.push(pair);
+                    }
+
+                    return res.status(200).json({ success: true, userAchievements: pairs })
+                }
+            }).catch(err => console.log(err))
+        }
+        asyncFindList(user.email);
+    }).catch(err => console.log(err))
+}
+
 module.exports = {
     createNewQuest,
     retrieveAllUserQuests,
@@ -350,5 +384,6 @@ module.exports = {
     addToDoEvent,
     deleteToDoEvent,
     retrieveAllUserEvents,
-    addAchievement
+    addAchievement,
+    retrieveAllUserAchievements
 }

@@ -33,7 +33,8 @@ export const GlobalStoreActionType = {
     CLEAR_ENTRY: "CLEAR_ENTRY",
     LOAD_ALL_USER_EVENTS: "LOAD_ALL_USER_EVENTS",
     LOAD_HOMESCREEN_DATA: "LOAD_HOMESCREEN_DATA",
-    COMPLETE_QUEST: "COMPLETE_QUEST"
+    COMPLETE_QUEST: "COMPLETE_QUEST",
+    LOAD_ALL_USER_ACHIEVEMENTS: "LOAD_ALL_USER_ACHIEVEMENTS"
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -51,7 +52,8 @@ function GlobalStoreContextProvider(props) {
         completeQuestModalVisible: false,
         addWorkoutModalVisible: false,
         entry: [],
-        todo: []
+        todo: [],
+        achievements: []
     });
     const history = useHistory();
 
@@ -79,7 +81,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.CANCEL_NEW_QUEST: {
@@ -94,7 +97,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_QUESTS: {
@@ -109,7 +113,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_SKILLS: {
@@ -124,7 +129,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.SHOW_DELETE_QUEST_MODAL: {
@@ -139,7 +145,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.UNSHOW_DELETE_QUEST_MODAL: {
@@ -154,7 +161,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.SHOW_COMPLETE_QUEST_MODAL: {
@@ -169,7 +177,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: true,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.UNSHOW_COMPLETE_QUEST_MODAL: {
@@ -184,7 +193,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.SHOW_ADD_SKILL_MODAL: {
@@ -199,7 +209,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.UNSHOW_ADD_SKILL_MODAL: {
@@ -214,7 +225,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.SHOW_ADD_WORKOUT_MODAL: {
@@ -228,7 +240,8 @@ function GlobalStoreContextProvider(props) {
                     addSkillModalVisible: false,
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: true,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL: {
@@ -243,7 +256,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_WORKOUTS: {
@@ -258,7 +272,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_ENTRY_BY_DATE: {
@@ -273,7 +288,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: payload,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.CLEAR_ENTRY: {
@@ -288,7 +304,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: payload,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_ALL_USER_EVENTS: {
@@ -303,7 +320,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: payload
+                    todo: payload,
+                    achievements: store.achievements
                 });
             }
             case GlobalStoreActionType.LOAD_HOMESCREEN_DATA: {
@@ -318,7 +336,8 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: payload
+                    todo: payload,
+                    achievements: store.achievements
                 })
             }
             case GlobalStoreActionType.COMPLETE_QUEST: {
@@ -333,8 +352,25 @@ function GlobalStoreContextProvider(props) {
                     completeQuestModalVisible: false,
                     addWorkoutModalVisible: false,
                     entry: store.entry,
-                    todo: store.todo
+                    todo: store.todo,
+                    achievements: store.achievements
                 })
+            }
+            case GlobalStoreActionType.LOAD_ALL_USER_ACHIEVEMENTS: {
+                return setStore({
+                    ADD_QUEST_ACTIVE: false,
+                    QUESTS: store.QUESTS,
+                    SKILLS: store.SKILLS,
+                    WORKOUTS: store.WORKOUTS,
+                    deleteQuestModalVisible: false,
+                    selectedQuest: store.selectedQuest,
+                    addSkillModalVisible: false,
+                    completeQuestModalVisible: false,
+                    addWorkoutModalVisible: false,
+                    entry: store.entry,
+                    todo: store.todo,
+                    achievements: payload
+                });
             }
             default:
                 return store;
@@ -461,6 +497,7 @@ function GlobalStoreContextProvider(props) {
 
     store.logNewWorkout = async function (date, musclesHit, exercisesArr){
         let response = await api.addNewWorkout(date, musclesHit, exercisesArr, auth.user.email);
+        storeReducer({type: GlobalStoreActionType.UNSHOW_ADD_WORKOUT_MODAL})
     }
 
     store.retrieveAllWorkouts = async function(){
@@ -582,10 +619,13 @@ function GlobalStoreContextProvider(props) {
             console.log("API FAILED TO GET THE SKILLS");
         }
     }
-    store.completeQuest = async function(stats, id){
+    store.completeQuest = async function(stats, id, name, date, completionNote){
+        await api.addAchievement(name, stats, date, completionNote, auth.user.email)
         let response1 = await api.updateSkills(stats)
         let response2 = await api.deleteQuestById(id)
         let response3 = await api.retrieveAllUserQuests();
+
+        
         if(response1.status === 200 && response2.status === 200 && response3.status === 200){
             let userSkills = response1.data.userSkills;
             let questsArray = response3.data.userQuests;
@@ -596,7 +636,8 @@ function GlobalStoreContextProvider(props) {
             })
         }
         else{
-            console.log("API FAILED TO GET THE SKILLS");
+            console.log("skillsUpdated? " + response1.status);
+            console.log("questDeleted? " + response2.status);
         }
     }
     
@@ -606,8 +647,19 @@ function GlobalStoreContextProvider(props) {
         store.retrieveAllUserQuests();
     }
 
-    store.addAchievement = async function(name, skills, date, completionNote){
-        let response = await api.addAchievement(name, skills, date, completionNote)
+    store.retrieveAllUserAchievements = async function(){
+        let response = await api.retrieveAllUserAchievements();
+        if(response.status === 200){
+            let achievementsArray = response.data.userAchievements;
+            achievementsArray = achievementsArray.reverse()
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_ALL_USER_ACHIEVEMENTS,
+                payload: achievementsArray
+            })
+        }
+        else{
+            console.log("API FAILED TO GET THE QUESTS");
+        }
     }
 
     return (
