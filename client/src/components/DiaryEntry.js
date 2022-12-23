@@ -12,6 +12,7 @@ function DiaryEntry(props) {
     const { store } = useContext(GlobalStoreContext);
     const [contentShowing, setContentShowing] = useState(false);
     const { date, time, contents} = props;
+    console.log("hi")
  
     let t = "";
     let hour = time.substring(0, time.indexOf(":"));
